@@ -23,7 +23,7 @@ import SkillsControllers from '../../lib/controllers/SkillsController';
  * - 500: An error occurred while fetching skills.
  */
 
-export async function GET(req: Request) {
+export async function GET(req: Request): Promise<Response> {
   const { searchParams } = new URL(req.url);
 
   const validParams = ['name', 'id', 'type'];
@@ -54,7 +54,7 @@ export async function GET(req: Request) {
     } else if (id) {
       response = await SkillsControllers.getSkillByID(id);
     } else {
-      response = await SkillsControllers.getAllSkills();
+      response = await SkillsControllers.getSkillsGroupedByCategoryName();
     }
 
     return NextResponse.json(response.body, { status: response.status });

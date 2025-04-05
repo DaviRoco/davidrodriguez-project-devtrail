@@ -1,5 +1,5 @@
-import SkillsRepository from '../repositories/SkillsRepository';
 import Skills from '../entities/Skills';
+import SkillsRepository from '../repositories/SkillsRepository';
 
 export class SkillsService {
   private skillsRepository: SkillsRepository;
@@ -24,6 +24,14 @@ export class SkillsService {
       return null;
     }
     return skillsData;
+  }
+
+  async getSkillsGroupedByCategoryName(): Promise<{ [categoryName: string]: Skills[] } | null> {
+    const groupedSkillsData = await this.skillsRepository.getSkillsGroupedByCategoryName();
+    if (!groupedSkillsData) {
+      return null;
+    }
+    return groupedSkillsData;
   }
 
   /**

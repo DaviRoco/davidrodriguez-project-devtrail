@@ -34,17 +34,20 @@ class Skills {
   _name: string;
   _description?: string;
   _level: KnowledgeLevelEnumerations;
+  _skills_category_id: string;
 
   constructor(
     id: string,
     name: string,
     description: string,
     level: KnowledgeLevelEnumerations,
+    skills_category_id: string,
   ) {
     this._id = id;
     this._name = name;
     this._description = description;
     this._level = level;
+    this._skills_category_id = skills_category_id;
   }
 
   get id() {
@@ -61,6 +64,14 @@ class Skills {
 
   get level() {
     return this._level;
+  }
+
+  get skills_category_id() {
+    return this._skills_category_id;
+  }
+
+  set skills_category_id(skills_category_id: string) {
+    this._skills_category_id = skills_category_id;
   }
 }
 

@@ -3,18 +3,18 @@
  * @description Repository class for managing experience and educational records in the Firestore database.
  */
 
-import { db } from '../../firebase';
 import {
   collection,
-  getDocs,
   doc,
-  getDoc,
-  where,
-  query,
   DocumentData,
+  getDoc,
+  getDocs,
+  query,
+  where,
 } from 'firebase/firestore';
-import Skills from '../entities/Skills';
+import { db } from '../../firebase';
 import { KnowledgeLevelEnumerations } from '../constants/enumerations/KnowledgeLevelsEnumerations';
+import Skills from '../entities/Skills';
 
 const skillsCollection = collection(db, 'skills');
 
@@ -26,7 +26,7 @@ class SkillsRepository {
    * @throws {Error} If mandatory fields are missing.
    */
   private validateAndMapSkill(docData: DocumentData, id: string): Skills {
-    const { name, description, level } = docData;
+    const { name, description, level, skills_category_id } = docData;
 
     if (!name || !description || !level) {
       throw new Error(`Skill with ID ${id} is missing mandatory fields.`);
@@ -37,6 +37,7 @@ class SkillsRepository {
       name,
       description,
       level as KnowledgeLevelEnumerations,
+      skills_category_id,
     );
   }
 
@@ -131,6 +132,38 @@ class SkillsRepository {
 
     return skills;
   }
+
+  async getSkillsGroupedByCategoryName(): Promise<{ [categoryName: string]: Skills[] }> {
+    const groupedSkills: { [categoryName: string]: Skills[] } = {};
+  
+    // Step 1: Get all categories
+    const categoriesSnapshot = await getDocs(collection(db, 'skill_categories'));
+  
+    if (categoriesSnapshot.empty) {
+      throw new Error('No categories found.');
+    }
+  
+    // Step 2: Loop through each category and fetch matching skills
+    const fetches = categoriesSnapshot.docs.map(async (categoryDoc) => {
+      const categoryData = categoryDoc.data();
+      const categoryName = categoryData.name;
+  
+      if (!categoryName) return;
+  
+      const q = query(skillsCollection, where('skills_category_id', '==', categoryDoc.id));
+      const querySnapshot = await getDocs(q);
+  
+      groupedSkills[categoryName] = querySnapshot.docs.map((doc) =>
+        this.validateAndMapSkill(doc.data(), doc.id)
+      );
+    });
+  
+    await Promise.all(fetches);
+  
+    return groupedSkills;
+  }
+  
+  
 }
 
 export default SkillsRepository;
