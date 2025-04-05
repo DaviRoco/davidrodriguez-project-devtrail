@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
-import './about.css';
 import Image from 'next/image';
 import AboutImg from '../../assets/profile.jpeg';
+import './about.css';
 import Info from './Info';
 const About = () => {
   return (
@@ -28,7 +27,7 @@ const About = () => {
             </p>
 
             <a
-              href="/David Rodríguez Coto - Resume 2024.pdf"
+              href="/David Rodriguez Coto - Resume 2025.pdf"
               download
               className="button button--flex"
             >
