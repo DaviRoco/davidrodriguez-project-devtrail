@@ -28,13 +28,13 @@
  * @module RecordsServiceTest
  */
 
-import { RecordsService } from '../../lib/services/RecordsService';
-import RecordsRepository from '../../lib/repositories/RecordsRepository';
-import ExperienceRecords from '../../lib/entities/ExperienceRecords';
-import EducationalRecords from '../../lib/entities/EducationalRecords';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
+import EducationalRecords from '../../lib/entities/EducationalRecords';
+import ExperienceRecords from '../../lib/entities/ExperienceRecords';
 import Skills from '../../lib/entities/Skills';
+import RecordsRepository from '../../lib/repositories/RecordsRepository';
 import SkillsRepository from '../../lib/repositories/SkillsRepository';
+import { RecordsService } from '../../lib/services/RecordsService';
 
 jest.mock('../../lib/repositories/RecordsRepository');
 jest.mock('../../lib/repositories/SkillsRepository');
@@ -60,12 +60,14 @@ describe('Records Service', () => {
           'JavaScript',
           'A programming language that conforms to the ECMAScript specification.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'TypeScript',
           'A strict syntactical superset of JavaScript.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
       ],
       'Company Name',
@@ -83,12 +85,14 @@ describe('Records Service', () => {
           'JavaScript',
           'A programming language that conforms to the ECMAScript specification.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'TypeScript',
           'A strict syntactical superset of JavaScript.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
       ],
       'Company Name',
@@ -109,12 +113,14 @@ describe('Records Service', () => {
           'JavaScript',
           'A programming language that conforms to the ECMAScript specification.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'TypeScript',
           'A strict syntactical superset of JavaScript.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
       ],
       'University Name',
@@ -132,12 +138,14 @@ describe('Records Service', () => {
           'JavaScript',
           'A programming language that conforms to the ECMAScript specification.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'TypeScript',
           'A strict syntactical superset of JavaScript.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
       ],
       'University Name',

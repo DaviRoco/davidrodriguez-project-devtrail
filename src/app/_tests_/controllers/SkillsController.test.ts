@@ -72,6 +72,48 @@ describe('Skills Controller', () => {
     });
   });
 
+  describe('getSkillsGroupedByCategoryName', () => {
+    const mockSkillsGrouped = {
+      Frontend: [
+        { _id: '1', _name: 'React', _category: 'Frontend' },
+        { _id: '2', _name: 'Angular', _category: 'Frontend' },
+      ],
+      Backend: [{ _id: '3', _name: 'Node.js', _category: 'Backend' }],
+    };
+    test('It should return grouped skills on success.', async () => {
+      (
+        SkillsService.prototype.getSkillsGroupedByCategoryName as jest.Mock
+      ).mockResolvedValue(mockSkillsGrouped);
+
+      const result = await SkillsController.getSkillsGroupedByCategoryName();
+
+      expect(result.status).toBe(200);
+      expect(result.body).toEqual(mockSkillsGrouped);
+    });
+
+    test('It should return a message if no skills are found.', async () => {
+      (
+        SkillsService.prototype.getSkillsGroupedByCategoryName as jest.Mock
+      ).mockResolvedValue(null);
+
+      const result = await SkillsController.getSkillsGroupedByCategoryName();
+
+      expect(result.status).toBe(200);
+      expect(result.body).toBe('No Skills fetched');
+    });
+
+    test('It should handle errors', async () => {
+      (
+        SkillsService.prototype.getSkillsGroupedByCategoryName as jest.Mock
+      ).mockRejectedValue(new Error('Test'));
+
+      const result = await SkillsController.getSkillsGroupedByCategoryName();
+
+      expect(result.status).toBe(500);
+      expect(result.body).toBe('Failed to retrieve skills - Error: Test');
+    });
+  });
+
   describe('getSkillByName', () => {
     const mockSkill = mockSkills[0];
     test('It should return the specified skill with given name on success.', async () => {

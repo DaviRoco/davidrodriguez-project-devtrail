@@ -1,7 +1,9 @@
 .services-container {
+  display: grid;
   grid-template-columns: repeat(3, 270px);
   justify-content: center;
   column-gap: 1.8rem;
+  row-gap: 2rem;
 }
 
 .services-content {
@@ -125,7 +127,8 @@
 
 @media screen and (max-width: 768px) {
   .services-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    justify-items: center;
   }
 
   .services-content {
@@ -138,6 +141,11 @@
 }
 
 @media screen and (max-width: 576px) {
+  .services-container {
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    justify-items: center;
+  }
+
   .services-modal-content {
     padding: 4.5rem 1.5rem 2.5rem;
   }
@@ -149,7 +157,8 @@
 
 @media screen and (max-width: 350px) {
   .services-container {
-    grid-template-columns: max-content;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    justify-items: center;
   }
 
   .services-content {

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './solutions.css';
 
 const Solutions = () => {
@@ -8,12 +8,14 @@ const Solutions = () => {
   const toggleTab = (index: number) => {
     setToggleState(index);
   };
+
   return (
     <section className="services section" id="services">
       <h2 className="section-title">Services</h2>
       <span className="section-subtitle">All the Solutions I offer</span>
 
       <div className="services-container container grid">
+        {/* Software Development */}
         <div className="services-content">
           <div>
             <i className="uil uil-web-grid services-icon"></i>
@@ -40,36 +42,32 @@ const Solutions = () => {
 
               <h3 className="services-modal-title">Software Development</h3>
               <p className="services-modal-description">
-                Over 1 year of experience delivering high-quality software
-                solutions.
+                Over 1 year of experience building full-stack, scalable, and AI-integrated systems across enterprise and portfolio-grade projects.
               </p>
 
               <ul className="services-modal-services grid">
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Focus on delivering reliable, efficient, and scalable
-                    systems.
+                    Built GPT‑4–powered interfaces with Azure AI, React, and Node.js.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Comprehensive front-end and back-end development for web
-                    applications.
+                    Developed scalable APIs using Spring Boot, Node.js, and .NET.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Skilled in building responsive and user-friendly interfaces.
+                    Created responsive UIs with React, Angular, and Next.js.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Expertise in integrating databases, APIs, and server-side
-                    functionality.
+                    Integrated databases, AI pipelines, and secure backend logic.
                   </p>
                 </li>
               </ul>
@@ -77,6 +75,7 @@ const Solutions = () => {
           </div>
         </div>
 
+        {/* Project Coordination */}
         <div className="services-content">
           <div>
             <i className="uil uil-arrow services-icon"></i>
@@ -103,36 +102,32 @@ const Solutions = () => {
 
               <h3 className="services-modal-title">Project Coordination</h3>
               <p className="services-modal-description">
-                Help teams streamline development processes for better
-                collaboration and faster delivery.
+                Proven leadership in Agile teams, enhancing collaboration and delivery velocity through structured workflows and mentorship.
               </p>
 
               <ul className="services-modal-services grid">
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Coordinating development tasks within agile teams using
-                    Scrum methodologies.
+                    Coordinated Agile projects with Scrum ceremonies in Jira.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Leading pull request processes, code reviews, and ensuring
-                    adherence to coding standards.
+                    Led pull requests, reviews, and enforced code standards.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Mentoring junior developers and interns, fostering knowledge
-                    sharing and growth.
+                    Mentored developers and authored onboarding documentation.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Creating Technical and Onboarding Documentation.
+                    Facilitated knowledge sharing and engineering collaboration.
                   </p>
                 </li>
               </ul>
@@ -140,6 +135,7 @@ const Solutions = () => {
           </div>
         </div>
 
+        {/* Consulting Services */}
         <div className="services-content">
           <div>
             <i className="uil uil-edit services-icon"></i>
@@ -166,31 +162,80 @@ const Solutions = () => {
 
               <h3 className="services-modal-title">Consulting Services</h3>
               <p className="services-modal-description">
-                Offer consulting services to guide clients through the
-                complexities of software development, from architecture design
-                to best coding practices.
+                Guidance on architecture, optimization, and developer enablement across full-stack platforms.
               </p>
 
               <ul className="services-modal-services grid">
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Offering tailored advice on software architecture and best
-                    practices.
+                    Specialized advice on Java, Spring Boot, React, and Node.js.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Specializing in development workflows for frontend (React,
-                    Angular) and backend (Node.js, Spring Boot) systems.
+                    Benchmarked models like Claude 3.5 via Azure/AWS Bedrock.
                   </p>
                 </li>
                 <li className="services-modal-service">
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
-                    Guidance on optimizing code, enhancing performance, and
-                    maintaining scalability.
+                    Helped teams scale systems and refine developer workflows.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Cloud Architecture & Deployment */}
+        <div className="services-content">
+          <div>
+            <i className="uil uil-cloud-check services-icon"></i>
+            <h3 className="services-title">Cloud Architecture</h3>
+          </div>
+
+          <span className="services-button" onClick={() => toggleTab(4)}>
+            View More
+            <i className="uil uil-arrow-right services-button-icon"></i>
+          </span>
+
+          <div
+            className={
+              toggleState === 4
+                ? 'services-modal active-modal'
+                : 'services-modal'
+            }
+          >
+            <div className="services-modal-content">
+              <i
+                onClick={() => toggleTab(0)}
+                className="uil uil-times services-modal-close"
+              ></i>
+
+              <h3 className="services-modal-title">Cloud Architecture & Deployment</h3>
+              <p className="services-modal-description">
+                Architecting scalable cloud infrastructure with security, performance, and cost-efficiency in mind.
+              </p>
+
+              <ul className="services-modal-services grid">
+                <li className="services-modal-service">
+                  <i className="uil uil-check-circle services-modal-icon"></i>
+                  <p className="services-modal-info">
+                    Trained in AWS architecture and cloud-native deployments.
+                  </p>
+                </li>
+                <li className="services-modal-service">
+                  <i className="uil uil-check-circle services-modal-icon"></i>
+                  <p className="services-modal-info">
+                    Deployed projects using Docker, Firebase, and CI/CD workflows.
+                  </p>
+                </li>
+                <li className="services-modal-service">
+                  <i className="uil uil-check-circle services-modal-icon"></i>
+                  <p className="services-modal-info">
+                    Managed Dev/QA/Prod environments with secure multi-tenant access.
                   </p>
                 </li>
               </ul>

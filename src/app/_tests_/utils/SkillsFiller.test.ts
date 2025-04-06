@@ -26,11 +26,11 @@
  * @module SkillsFillerTest
  */
 
-import SkillsFiller from '../../lib/utils/SkillsFiller';
-import SkillsRepository from '../../lib/repositories/SkillsRepository';
-import Skills from '../../lib/entities/Skills';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
 import Projects from '../../lib/entities/Projects';
+import Skills from '../../lib/entities/Skills';
+import SkillsRepository from '../../lib/repositories/SkillsRepository';
+import SkillsFiller from '../../lib/utils/SkillsFiller';
 
 jest.mock('../../lib/repositories/SkillsRepository');
 
@@ -61,12 +61,14 @@ describe('SkillsFiller', () => {
           'TypeScript',
           'Strong in TypeScript',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'JavaScript',
           'Experienced in JavaScript',
           KnowledgeLevelEnumerations.Mid,
+          '1',
         ),
       ],
     ),
@@ -83,12 +85,14 @@ describe('SkillsFiller', () => {
           'TypeScript',
           'Strong in TypeScript',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'JavaScript',
           'Experienced in JavaScript',
           KnowledgeLevelEnumerations.Mid,
+          '1',
         ),
       ],
     ),
@@ -121,12 +125,14 @@ describe('SkillsFiller', () => {
           'TypeScript',
           'Strong in TypeScript',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'JavaScript',
           'Experienced in JavaScript',
           KnowledgeLevelEnumerations.Mid,
+          '1',
         ),
       ];
 
@@ -156,12 +162,14 @@ describe('SkillsFiller', () => {
           'TypeScript',
           'Strong in TypeScript',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'JavaScript',
           'Experienced in JavaScript',
           KnowledgeLevelEnumerations.Mid,
+          '1',
         ),
       ];
       const mockSkills2 = [
@@ -170,6 +178,7 @@ describe('SkillsFiller', () => {
           'Java',
           'Strong in Java',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
       ];
       mockSkillsRepository.getSkillsByIDs = jest

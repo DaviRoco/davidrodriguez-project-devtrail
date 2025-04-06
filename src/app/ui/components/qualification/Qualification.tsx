@@ -1,12 +1,13 @@
 'use client';
-import React, { useCallback, useEffect, useState } from 'react';
-import './qualification.css';
+import DOMPurify from 'dompurify';
+import { useCallback, useEffect, useState } from 'react';
 import { QualificationService } from '../../services/QualificationService';
 import {
   Certifications,
   EducationalRecords,
   type ExperienceRecords,
 } from '../../types/types';
+import './qualification.css';
 const Qualification = () => {
   const [toggleState, setToggleState] = useState(1);
   const [experienceRecords, setExperienceRecords] = useState<
@@ -31,7 +32,8 @@ const Qualification = () => {
       const sortedResponse = Array.isArray(response)
         ? response.sort(
             (a, b) =>
-              new Date(b._endDate).getTime() - new Date(a._endDate).getTime(),
+              new Date(b._startDate).getTime() -
+              new Date(a._startDate).getTime(),
           )
         : [];
       setExperienceRecords(sortedResponse);
@@ -323,14 +325,12 @@ const Qualification = () => {
             ></i>
 
             <h3 className="qualification-modal-title">{record._title}</h3>
-            <ul className="qualification-modal-services grid">
-              {record._description.split(' || ').map((item, index) => (
-                <li key={index} className="qualification-modal-project">
-                  <i className="uil uil-briefcase qualification-modal-icon"></i>
-                  <p className="qualification-modal-info">{item}</p>
-                </li>
-              ))}
-            </ul>
+            <div
+              className="qualification-modal-services grid"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(record._description),
+              }}
+            ></div>
             <br />
             <ul className="qualification-modal-services grid">
               <li className="qualification-modal-project">
@@ -344,7 +344,11 @@ const Qualification = () => {
                     month: 'long',
                   })}
                   {' - '}
-                  {new Date(record._endDate).toLocaleDateString('en-US', {
+                  {new Date(
+                    new Date(record._endDate).getFullYear() === 2000
+                      ? Date.now()
+                      : record._endDate,
+                  ).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                   })}
@@ -391,14 +395,12 @@ const Qualification = () => {
             ></i>
 
             <h3 className="qualification-modal-title">{record._degree}</h3>
-            <ul className="qualification-modal-services grid">
-              {record._description.split(' || ').map((item, index) => (
-                <li key={index} className="qualification-modal-project">
-                  <i className="uil uil-graduation-cap qualification-modal-icon"></i>
-                  <p className="qualification-modal-info">{item}</p>
-                </li>
-              ))}
-            </ul>
+            <div
+              className="qualification-modal-services grid"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(record._description),
+              }}
+            ></div>
             <br />
             <ul className="qualification-modal-services grid">
               <li className="qualification-modal-project">

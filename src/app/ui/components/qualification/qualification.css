@@ -211,6 +211,43 @@
   font-size: var(--small-font-size);
 }
 
+/* Styled HTML content for experience descriptions */
+.qualification-html-details {
+  font-size: var(--small-font-size);
+  line-height: 1.6;
+  margin-top: 1rem;
+  padding: 0 3.5rem;
+  color: var(--text-color);
+}
+
+.qualification-html-details h3 {
+  font-size: var(--normal-font-size);
+  font-weight: bold;
+  margin: 1.25rem 0 0.75rem;
+  color: var(--title-color);
+}
+
+.qualification-html-details p {
+  margin-bottom: 0.75rem;
+}
+
+.qualification-html-details ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.qualification-html-details li {
+  list-style-type: disc;
+  margin-bottom: 0.4rem;
+}
+
+.qualification-html-details hr {
+  border: none;
+  border-top: 1px solid var(--text-color);
+  margin: 1.5rem 0;
+}
+
 @media screen and (max-width: 992px) {
   .qualification-container {
     margin-left: auto;
@@ -235,6 +272,10 @@
 
   .qualification-modal-title {
     font-size: var(--h4-font-size);
+  }
+
+  .qualification-html-details {
+    padding: 0 1.5rem;
   }
 }
 
@@ -265,6 +306,11 @@
 
   .qualification-modal-extra-icon {
     font-size: 1rem;
+  }
+
+  .qualification-html-details {
+    padding: 0 1rem;
+    font-size: var(--smaller-font-size);
   }
 }
 
@@ -304,5 +350,10 @@
 
   .qualification-modal {
     min-height: 100dvh;
+  }
+
+  .qualification-html-details {
+    padding: 0 0.5rem;
+    font-size: var(--smaller-font-size);
   }
 }

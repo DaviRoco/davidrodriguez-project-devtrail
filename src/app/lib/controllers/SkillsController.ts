@@ -6,10 +6,10 @@
  * @module SkillsController
  */
 
-import SkillsService from '../services/SkillsService';
-import SkillsRepository from '../repositories/SkillsRepository';
-import Skills from '../entities/Skills';
 import ResponseData from '../constants/api/ResponseData';
+import Skills from '../entities/Skills';
+import SkillsRepository from '../repositories/SkillsRepository';
+import SkillsService from '../services/SkillsService';
 import ApiResponseBuilder from '../utils/ApiResponseBuilder';
 
 const skillsRepository = new SkillsRepository();
@@ -29,6 +29,31 @@ export const getAllSkills = async (): Promise<
 > => {
   try {
     const skills = await skillsService.getAllSkills();
+    if (!skills) {
+      return ApiResponseBuilder.createSuccessResponse('No Skills fetched');
+    }
+    return ApiResponseBuilder.createSuccessResponse(skills);
+  } catch (error) {
+    return ApiResponseBuilder.createErrorResponse(
+      error as Error,
+      'Failed to retrieve skills',
+    );
+  }
+};
+
+/**
+ * Retrieves all skill records categorized.
+ *
+ * @returns {Promise<ResponseData<Skills[] | string>>}
+ * - A promise that resolves to a ResponseData object containing either the skill records data or an error message.
+ *
+ * @throws {Error} If there is an issue retrieving the skill records.
+ */
+export const getSkillsGroupedByCategoryName = async (): Promise<
+  ResponseData<{ [categoryName: string]: Skills[] } | string>
+> => {
+  try {
+    const skills = await skillsService.getSkillsGroupedByCategoryName();
     if (!skills) {
       return ApiResponseBuilder.createSuccessResponse('No Skills fetched');
     }
@@ -113,6 +138,7 @@ const SkillsController = {
   getAllSkills,
   getSkillByName,
   getSkillByID,
+  getSkillsGroupedByCategoryName,
 };
 
 export default SkillsController;

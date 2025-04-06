@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
-import './about.css';
 import Image from 'next/image';
-import AboutImg from '../../assets/profile.jpeg';
+import AboutImg from '../../assets/profile.png';
+import './about.css';
 import Info from './Info';
 const About = () => {
   return (
@@ -18,17 +17,26 @@ const About = () => {
             <Info></Info>
 
             <p className="about-description">
-              I specialize in both client-side and server-side development,
-              creating full-stack solutions using the latest and greatest tech
-              stacks. I thrive in collaborative, agile environments and bring a
-              strong focus on clean, testable code and continuous learning. With
-              a strong focus on teamwork, I believe that collaboration unlocks
-              greater achievements and drives success in every project.
-              Let&apos;s create something world-changing.
+              Innovative Software Engineer specializing in AI-driven full-stack
+              development and cloud solutions. With a strong foundation in
+              software engineering and a passion for AI, I design and optimize
+              scalable applications that enhance efficiency and performance.
+              <br /> <br />
+              I thrive in Agile environments, leading projects that integrate AI
+              technologies to deliver intelligent, high-impact solutions. My
+              expertise in AWS cloud architecture enables me to build resilient
+              and cost-effective systems, optimizing workflows and reducing
+              operational overhead.
+              <br /> <br />
+              Beyond coding, I actively contribute to Agile collaboration
+              through code reviews, sprint planning, and mentoring, ensuring
+              continuous improvement and knowledge sharing within teams. I’m
+              always eager to explore emerging technologies and push the
+              boundaries of what’s possible with AI-driven development.
             </p>
 
             <a
-              href="/David Rodríguez Coto - Resume 2024.pdf"
+              href="/David Rodriguez Coto - Resume 2025.pdf"
               download
               className="button button--flex"
             >

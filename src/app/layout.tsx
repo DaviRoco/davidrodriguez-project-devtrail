@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import RootClientLayout from './ui/components/RootClientLayout';
 
 export const metadata: Metadata = {
   title: 'DevFolio - David Rodríguez',
@@ -17,14 +18,16 @@ export default function RootLayout({
         <link
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
-        ></link>
+        />
         <link
           rel="stylesheet"
           href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-        ></link>
+        />
         <link rel="icon" href="/icon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <RootClientLayout>{children}</RootClientLayout>
+      </body>
     </html>
   );
 }

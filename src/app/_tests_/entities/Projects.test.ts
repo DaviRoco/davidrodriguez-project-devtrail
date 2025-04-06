@@ -17,8 +17,8 @@
  * @module ProjectsEntityTest
  */
 
-import Projects from '../../lib/entities/Projects';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
+import Projects from '../../lib/entities/Projects';
 import Skills from '../../lib/entities/Skills';
 
 describe('Projects Entity', () => {
@@ -28,6 +28,7 @@ describe('Projects Entity', () => {
       'JavaScript',
       'A programming language that conforms to the ECMAScript specification.',
       KnowledgeLevelEnumerations.High,
+      '1',
     );
     const project = new Projects(
       '1',

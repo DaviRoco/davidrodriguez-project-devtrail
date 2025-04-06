@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Data = () => {
   return (
@@ -26,7 +25,7 @@ const Data = () => {
         </svg>
       </h1>
 
-      <h3 className="home-subtitle">Fullstack Developer/Engineer</h3>
+      <h3 className="home-subtitle">Full-Stack Developer/Engineer</h3>
       <p className="home-description">
         I&apos;m a passionate software developer who thrives on innovating code
         and creating solutions for everyday challenges. Let&apos;s connect!

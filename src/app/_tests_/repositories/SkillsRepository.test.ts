@@ -26,10 +26,10 @@
  * @module SkillsRepositoryTest
  */
 
-import SkillsRepository from '../../lib/repositories/SkillsRepository';
+import { getDoc, getDocs } from 'firebase/firestore';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
-import { getDocs, getDoc } from 'firebase/firestore';
 import Skills from '../../lib/entities/Skills';
+import SkillsRepository from '../../lib/repositories/SkillsRepository';
 
 jest.mock('firebase/firestore', () => ({
   initializeApp: jest.fn(),
@@ -123,6 +123,125 @@ describe('Skills Repository', () => {
 
       const skills = await repository.getAllSkills();
       expect(skills).toBeNull();
+    });
+  });
+
+  describe('getSkillsGroupedByCategoryName', () => {
+    test('It should retrieve all skills grouped by category.', async () => {
+      const mockCategories = [
+        { id: 'cat1', data: () => ({ name: 'Frontend' }) },
+        { id: 'cat2', data: () => ({ name: 'Backend' }) },
+      ];
+
+      const mockFrontendSkills = [
+        {
+          id: '1',
+          data: () => ({
+            name: 'React',
+            description: 'Frontend Framework',
+            level: KnowledgeLevelEnumerations.High,
+          }),
+        },
+      ];
+
+      const mockBackendSkills = [
+        {
+          id: '2',
+          data: () => ({
+            name: 'Node.js',
+            description: 'Backend Runtime',
+            level: KnowledgeLevelEnumerations.High,
+          }),
+        },
+      ];
+
+      // First call: getDocs for categories
+      (getDocs as jest.Mock).mockResolvedValueOnce({
+        empty: false,
+        docs: mockCategories,
+      });
+
+      // Next two calls: getDocs for skills per category
+      (getDocs as jest.Mock)
+        .mockResolvedValueOnce({
+          docs: mockFrontendSkills,
+        })
+        .mockResolvedValueOnce({
+          docs: mockBackendSkills,
+        });
+
+      const groupedSkills = await repository.getSkillsGroupedByCategoryName();
+
+      expect(groupedSkills).toHaveProperty('Frontend');
+      expect(groupedSkills).toHaveProperty('Backend');
+      expect(groupedSkills['Frontend'][0]._name).toBe('React');
+      expect(groupedSkills['Backend'][0]._name).toBe('Node.js');
+    });
+
+    test('It should throw an error if no categories are found.', async () => {
+      (getDocs as jest.Mock).mockResolvedValueOnce({
+        empty: true,
+        docs: [],
+      });
+
+      await expect(repository.getSkillsGroupedByCategoryName()).rejects.toThrow(
+        new Error('No categories found.'),
+      );
+    });
+
+    test('It should skip categories without a name.', async () => {
+      const mockCategories = [
+        { id: 'cat1', data: () => ({ name: '' }) }, // Invalid (no name)
+        { id: 'cat2', data: () => ({ name: 'ValidCategory' }) }, // Valid
+      ];
+    
+      const mockSkills = [
+        {
+          id: 'skill1',
+          data: () => ({
+            name: 'SomeSkill',
+            description: 'Some description',
+            level: KnowledgeLevelEnumerations.High,
+          }),
+        },
+      ];
+    
+      // 1st getDocs: fetch categories
+      (getDocs as jest.Mock).mockResolvedValueOnce({
+        empty: false,
+        docs: mockCategories,
+      });
+    
+      // 2nd getDocs: only for the valid category
+      (getDocs as jest.Mock).mockResolvedValueOnce({
+        docs: mockSkills,
+      });
+    
+      const groupedSkills = await repository.getSkillsGroupedByCategoryName();
+    
+      // The invalid category (empty name) should be skipped
+      expect(groupedSkills).toHaveProperty('ValidCategory');
+      expect(groupedSkills).not.toHaveProperty('');
+      expect(Object.keys(groupedSkills).length).toBe(1);
+    });
+    
+
+    test('It should handle empty skills for a category gracefully.', async () => {
+      const mockCategories = [{ id: 'cat1', data: () => ({ name: 'DevOps' }) }];
+
+      (getDocs as jest.Mock).mockResolvedValueOnce({
+        empty: false,
+        docs: mockCategories,
+      });
+
+      (getDocs as jest.Mock).mockResolvedValueOnce({
+        docs: [], // No skills
+      });
+
+      const groupedSkills = await repository.getSkillsGroupedByCategoryName();
+
+      expect(groupedSkills).toHaveProperty('DevOps');
+      expect(groupedSkills['DevOps']).toEqual([]);
     });
   });
 
@@ -278,12 +397,14 @@ describe('Skills Repository', () => {
         'JavaScript',
         'A programming language that conforms to the ECMAScript specification.',
         KnowledgeLevelEnumerations.High,
+        '1',
       ),
       new Skills(
         '2',
         'TypeScript',
         'A strict syntactical superset of JavaScript.',
         KnowledgeLevelEnumerations.High,
+        '1',
       ),
     ];
     test('It should retrieve the skills with the specified IDs.', async () => {
@@ -307,12 +428,14 @@ describe('Skills Repository', () => {
           'JavaScript',
           'A programming language that conforms to the ECMAScript specification.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '',
           'TypeScript',
           'A strict syntactical superset of JavaScript.',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
       ];
       (getDocs as jest.Mock).mockResolvedValueOnce(null);
