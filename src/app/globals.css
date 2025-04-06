@@ -4,13 +4,15 @@
 
 :root {
   /* Colors */
-  --hue: 0;
-  --saturation: 0%;
-  --title-color: #e5e5e5;
-  --title-color-dark: #8c8585;
-  --text-color: hsl(var(--hue), var(--saturation), 46%);
-  --body-color: #1a1a1a;
-  --container-color: #2b2b2b;
+  --hue: 220;
+  --saturation: 25%;
+
+  --title-color: #cfd8e3; /* Light blue-gray */
+  --title-color-dark: #91a7c7; /* Desaturated blue */
+  --text-color: hsl(var(--hue), 25%, 70%); /* Softer light blue */
+  --body-color: #0f172a; /* Deep navy (Tailwind's slate-900) */
+  --container-color: #1e293b; /* Darker blue-gray (Tailwind slate-800) */
+
   /* Fonts */
   --body-font: 'Nunito', sans-serif;
 

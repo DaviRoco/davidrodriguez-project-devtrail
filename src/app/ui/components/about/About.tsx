@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import AboutImg from '../../assets/profile.jpeg';
+import AboutImg from '../../assets/profile.png';
 import './about.css';
 import Info from './Info';
 const About = () => {
