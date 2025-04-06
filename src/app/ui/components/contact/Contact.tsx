@@ -8,7 +8,7 @@ const Contact = () => {
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if ((form.current as any).honeypot?.value) return;
+    if ((form.current as HTMLFormElement)['honeypot']?.value) return;
     
     if (isCooldown) return;
 
