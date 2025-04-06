@@ -26,8 +26,16 @@ export class SkillsService {
     return skillsData;
   }
 
-  async getSkillsGroupedByCategoryName(): Promise<{ [categoryName: string]: Skills[] } | null> {
-    const groupedSkillsData = await this.skillsRepository.getSkillsGroupedByCategoryName();
+  /**
+   * Retrieves all skills by category from the repository.
+   *
+   * @returns {Promise<Skills[] | null>} A promise that resolves to an array of skills if available, or null if no skills are found.
+   */
+  async getSkillsGroupedByCategoryName(): Promise<{
+    [categoryName: string]: Skills[];
+  } | null> {
+    const groupedSkillsData =
+      await this.skillsRepository.getSkillsGroupedByCategoryName();
     if (!groupedSkillsData) {
       return null;
     }

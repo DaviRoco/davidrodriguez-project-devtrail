@@ -133,37 +133,48 @@ class SkillsRepository {
     return skills;
   }
 
-  async getSkillsGroupedByCategoryName(): Promise<{ [categoryName: string]: Skills[] }> {
+  /**
+   * Retrieves a list of skills categorized.
+   *
+   * @returns A promise that resolves to an array of `Skills` objects inside categories.
+   * @throws {Error} - Throws an error if the skills do not exist.
+   */
+  async getSkillsGroupedByCategoryName(): Promise<{
+    [categoryName: string]: Skills[];
+  }> {
     const groupedSkills: { [categoryName: string]: Skills[] } = {};
-  
+
     // Step 1: Get all categories
-    const categoriesSnapshot = await getDocs(collection(db, 'skill_categories'));
-  
+    const categoriesSnapshot = await getDocs(
+      collection(db, 'skill_categories'),
+    );
+
     if (categoriesSnapshot.empty) {
       throw new Error('No categories found.');
     }
-  
+
     // Step 2: Loop through each category and fetch matching skills
     const fetches = categoriesSnapshot.docs.map(async (categoryDoc) => {
       const categoryData = categoryDoc.data();
       const categoryName = categoryData.name;
-  
+
       if (!categoryName) return;
-  
-      const q = query(skillsCollection, where('skills_category_id', '==', categoryDoc.id));
+
+      const q = query(
+        skillsCollection,
+        where('skills_category_id', '==', categoryDoc.id),
+      );
       const querySnapshot = await getDocs(q);
-  
+
       groupedSkills[categoryName] = querySnapshot.docs.map((doc) =>
-        this.validateAndMapSkill(doc.data(), doc.id)
+        this.validateAndMapSkill(doc.data(), doc.id),
       );
     });
-  
+
     await Promise.all(fetches);
-  
+
     return groupedSkills;
   }
-  
-  
 }
 
 export default SkillsRepository;

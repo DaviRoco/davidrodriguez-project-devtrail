@@ -41,6 +41,14 @@ export const getAllSkills = async (): Promise<
   }
 };
 
+/**
+ * Retrieves all skill records categorized.
+ *
+ * @returns {Promise<ResponseData<Skills[] | string>>}
+ * - A promise that resolves to a ResponseData object containing either the skill records data or an error message.
+ *
+ * @throws {Error} If there is an issue retrieving the skill records.
+ */
 export const getSkillsGroupedByCategoryName = async (): Promise<
   ResponseData<{ [categoryName: string]: Skills[] } | string>
 > => {
@@ -130,7 +138,7 @@ const SkillsController = {
   getAllSkills,
   getSkillByName,
   getSkillByID,
-  getSkillsGroupedByCategoryName
+  getSkillsGroupedByCategoryName,
 };
 
 export default SkillsController;
