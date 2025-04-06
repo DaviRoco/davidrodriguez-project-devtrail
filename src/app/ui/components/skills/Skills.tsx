@@ -25,11 +25,10 @@ const Skills = () => {
   const orderedCategories = [
     'Programming Languages',
     'Frameworks and Libraries',
-    'Databases',
     'Tools and Services',
+    'Databases',
   ];
 
-  // Optional: Descriptive titles for each category
   const categoryDescriptions: { [key: string]: string } = {
     'Programming Languages':
       'Languages I use to build applications and solve problems.',
