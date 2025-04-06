@@ -69,10 +69,6 @@ class Skills {
   get skills_category_id() {
     return this._skills_category_id;
   }
-
-  set skills_category_id(skills_category_id: string) {
-    this._skills_category_id = skills_category_id;
-  }
 }
 
 export default Skills;

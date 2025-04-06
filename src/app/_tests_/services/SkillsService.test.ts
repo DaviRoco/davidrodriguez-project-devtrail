@@ -26,10 +26,10 @@
  * @module SkillsServiceTest
  */
 
-import { SkillsService } from '../../lib/services/SkillsService';
-import SkillsRepository from '../../lib/repositories/SkillsRepository';
-import Skills from '../../lib/entities/Skills';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
+import Skills from '../../lib/entities/Skills';
+import SkillsRepository from '../../lib/repositories/SkillsRepository';
+import { SkillsService } from '../../lib/services/SkillsService';
 
 jest.mock('../../lib/repositories/SkillsRepository');
 
@@ -52,12 +52,14 @@ describe('Skills Service', () => {
       'TypeScript',
       'Strong in TypeScript',
       KnowledgeLevelEnumerations.High,
+      '1',
     ),
     new Skills(
       '2',
       'JavaScript',
       'Experienced in JavaScript',
       KnowledgeLevelEnumerations.Mid,
+      '1',
     ),
   ];
 
@@ -78,6 +80,40 @@ describe('Skills Service', () => {
 
       expect(result).toBeNull();
       expect(skillsRepository.getAllSkills).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('getSkillsGroupedByCategoryName', () => {
+    const mockSkillsGrouped: { [categoryName: string]: Skills[] } = {
+      Frontend: [
+        new Skills(
+          '1',
+          'React',
+          'Library',
+          KnowledgeLevelEnumerations.Mid,
+          '1'
+        )
+      ],
+    };
+
+    test('It should return grouped skills when repository returns data', async () => {
+      (skillsRepository.getSkillsGroupedByCategoryName as jest.Mock).mockResolvedValue(
+        mockSkillsGrouped,
+      );
+  
+      const result = await skillsService.getSkillsGroupedByCategoryName();
+  
+      expect(result).toEqual(mockSkillsGrouped);
+      expect(skillsRepository.getSkillsGroupedByCategoryName).toHaveBeenCalledTimes(1);
+    });
+  
+    test('It should return null when repository returns null', async () => {
+      (skillsRepository.getSkillsGroupedByCategoryName as jest.Mock).mockResolvedValue(null);
+  
+      const result = await skillsService.getSkillsGroupedByCategoryName();
+  
+      expect(result).toBeNull();
+      expect(skillsRepository.getSkillsGroupedByCategoryName).toHaveBeenCalledTimes(1);
     });
   });
 

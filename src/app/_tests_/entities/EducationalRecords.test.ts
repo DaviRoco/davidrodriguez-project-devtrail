@@ -16,8 +16,8 @@
  * @module EducationalRecordsEntityTest
  */
 
-import EducationalRecords from '../../lib/entities/EducationalRecords';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
+import EducationalRecords from '../../lib/entities/EducationalRecords';
 import Skills from '../../lib/entities/Skills';
 
 describe('Educational Records Entity', () => {
@@ -27,6 +27,7 @@ describe('Educational Records Entity', () => {
       'JavaScript',
       'A programming language that conforms to the ECMAScript specification.',
       KnowledgeLevelEnumerations.High,
+      '1',
     );
     const educationalRecords = new EducationalRecords(
       '1',

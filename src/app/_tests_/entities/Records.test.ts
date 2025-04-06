@@ -28,6 +28,7 @@ describe('Records Entity', () => {
       'JavaScript',
       'A programming language that conforms to the ECMAScript specification.',
       KnowledgeLevelEnumerations.High,
+      '1',
     );
     const records = new Records(
       '1',

@@ -27,12 +27,12 @@
  * @module ProjectsServiceTest
  */
 
-import { ProjectsService } from '../../lib/services/ProjectsService';
-import ProjectsRepository from '../../lib/repositories/ProjectsRepository';
+import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
 import Projects from '../../lib/entities/Projects';
 import Skills from '../../lib/entities/Skills';
-import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
+import ProjectsRepository from '../../lib/repositories/ProjectsRepository';
 import SkillsRepository from '../../lib/repositories/SkillsRepository';
+import { ProjectsService } from '../../lib/services/ProjectsService';
 
 jest.mock('../../lib/repositories/ProjectsRepository');
 jest.mock('../../lib/repositories/SkillsRepository');
@@ -67,12 +67,14 @@ describe('Projects Service', () => {
           'TypeScript',
           'Strong in TypeScript',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'JavaScript',
           'Experienced in JavaScript',
           KnowledgeLevelEnumerations.Mid,
+          '1',
         ),
       ],
     ),
@@ -89,12 +91,14 @@ describe('Projects Service', () => {
           'TypeScript',
           'Strong in TypeScript',
           KnowledgeLevelEnumerations.High,
+          '1',
         ),
         new Skills(
           '2',
           'JavaScript',
           'Experienced in JavaScript',
           KnowledgeLevelEnumerations.Mid,
+          '1',
         ),
       ],
     ),

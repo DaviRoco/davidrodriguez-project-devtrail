@@ -16,8 +16,8 @@
  * @module SkillsEntityTest
  */
 
-import Skills from '../../lib/entities/Skills';
 import { KnowledgeLevelEnumerations } from '../../lib/constants/enumerations/KnowledgeLevelsEnumerations';
+import Skills from '../../lib/entities/Skills';
 
 describe('Skills Entity', () => {
   test('It should create a new Skills object', () => {
@@ -26,6 +26,7 @@ describe('Skills Entity', () => {
       'JavaScript',
       'A programming language that conforms to the ECMAScript specification.',
       KnowledgeLevelEnumerations.High,
+      '1',
     );
     expect(skills).toBeDefined();
     expect(skills.id).toBe('1');
@@ -34,5 +35,6 @@ describe('Skills Entity', () => {
       'A programming language that conforms to the ECMAScript specification.',
     );
     expect(skills.level).toBe(KnowledgeLevelEnumerations.High);
+    expect(skills.skills_category_id).toBe('1');
   });
 });
