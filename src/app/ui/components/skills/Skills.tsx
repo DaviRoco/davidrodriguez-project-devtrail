@@ -27,10 +27,20 @@ const Skills = () => {
     'Tools and Services',
   ];
 
+  // Optional: Descriptive titles for each category
+  const categoryDescriptions: { [key: string]: string } = {
+    'Programming Languages': 'Languages I use to build applications and solve problems.',
+    'Frameworks and Libraries': 'My experience with modern frameworks and libraries.',
+    'Databases': 'Database systems I have worked with in projects.',
+    'Tools and Services': 'Additional tools and platforms I’m proficient with.',
+  };
+
   return (
     <section className="skills section" id="skills">
       <h2 className="section-title">Skills</h2>
-      <span className="section-subtitle">My Technical Full-Stack level</span>
+      <span className="section-subtitle">
+        A categorized overview of the technologies and tools I work with
+      </span>
 
       <div className="skills-container container">
         {orderedCategories.map((category) => {
@@ -40,6 +50,7 @@ const Skills = () => {
           return (
             <div className="skills-content" key={category}>
               <h3 className="skills-category-title">{category}</h3>
+              <p className="skills-category-description">{categoryDescriptions[category]}</p>
               <div className="skills-box">
                 <div className="skills-group">
                   {skills
