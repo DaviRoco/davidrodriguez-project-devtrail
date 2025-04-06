@@ -1,13 +1,18 @@
 'use client';
-import React, { useRef } from 'react';
-import './contact.css';
 import emailjs from '@emailjs/browser';
+import React, { useRef, useState } from 'react';
+import './contact.css';
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
+  const [isCooldown, setIsCooldown] = useState(false);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if ((form.current as any).honeypot?.value) return;
+    
+    if (isCooldown) return;
 
+    setIsCooldown(true);
     if (form.current) {
       emailjs
         .sendForm(
@@ -18,6 +23,10 @@ const Contact = () => {
         )
         .then(() => {
           (e.target as HTMLFormElement).reset();
+          setTimeout(() => setIsCooldown(false), 60000);
+        })
+        .catch(() => {
+          setIsCooldown(false);
         });
     }
   };
@@ -83,8 +92,8 @@ const Contact = () => {
                 className="contact-form-input"
               ></textarea>
             </div>
-            <button className="button button--flex">
-              Send Message
+            <button className="button button--flex"  disabled={isCooldown}>
+              {isCooldown ? 'Please wait...' : 'Send Message'}
               <svg
                 className="button-icon"
                 width="24"
@@ -108,6 +117,7 @@ const Contact = () => {
                 />
               </svg>
             </button>
+            <input type="text" name="honeypot" style={{ display: 'none' }} tabIndex={-1} />
           </form>
         </div>
       </div>
