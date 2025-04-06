@@ -35,7 +35,7 @@ const Skills = () => {
       'Languages I use to build applications and solve problems.',
     'Frameworks and Libraries':
       'My experience with modern frameworks and libraries.',
-    Databases: 'Database systems I have worked with in projects.',
+    Databases: 'Database systems I have worked with.',
     'Tools and Services': 'Additional tools and platforms I’m proficient with.',
   };
 
