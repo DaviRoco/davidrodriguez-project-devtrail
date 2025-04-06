@@ -1,12 +1,12 @@
 'use client';
-import React, { useCallback, useEffect, useState } from 'react';
-import './qualification.css';
+import { useCallback, useEffect, useState } from 'react';
 import { QualificationService } from '../../services/QualificationService';
 import {
   Certifications,
   EducationalRecords,
   type ExperienceRecords,
 } from '../../types/types';
+import './qualification.css';
 const Qualification = () => {
   const [toggleState, setToggleState] = useState(1);
   const [experienceRecords, setExperienceRecords] = useState<
@@ -31,7 +31,7 @@ const Qualification = () => {
       const sortedResponse = Array.isArray(response)
         ? response.sort(
             (a, b) =>
-              new Date(b._endDate).getTime() - new Date(a._endDate).getTime(),
+              new Date(b._startDate).getTime() - new Date(a._startDate).getTime(),
           )
         : [];
       setExperienceRecords(sortedResponse);
