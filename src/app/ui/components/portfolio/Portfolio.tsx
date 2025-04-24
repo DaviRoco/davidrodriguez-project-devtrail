@@ -1,24 +1,18 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ProjectService } from '../../services/ProjectService';
 import { Projects } from '../../types/types';
 import './portfolio.css';
 
-const Portfolio = () => {
-  const [toggleState, setToggleState] = useState('0');
+type ProjectProps = {
+  projects: Projects[];
+};
 
-  const {
-    data: projects = [],
-  } = useQuery<Projects[]>({
-    queryKey: ['projects'],
-    queryFn: () => ProjectService.getAllProjects(),
-    staleTime: 1000 * 60 * 60, // 1 hour
-  });
+const Portfolio = ({ projects }: ProjectProps) => {
+  const [toggleState, setToggleState] = useState('0');
 
   const toggleTab = (index: string) => {
     setToggleState(index);

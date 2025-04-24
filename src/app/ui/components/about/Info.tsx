@@ -1,32 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
-import { ExperienceService } from '../../services/ExperienceRecordService';
-import { ProjectService } from '../../services/ProjectService';
 import { ExperienceRecords } from '../../types/types';
 import { calculateTotalExperience } from '../../utils/ExperienceCalculatorUtil';
 
-const Info = () => {
-  // Fetch experience records
-  const {
-    data: experienceRecords = [],
-    isLoading: isLoadingExperience,
-  } = useQuery<ExperienceRecords[]>({
-    queryKey: ['experience-records'],
-    queryFn: () => ExperienceService.getAllExperienceRecords(),
-    staleTime: 1000 * 60 * 60, // 1 hour
-  });
+type InfoProps = {
+  experience: ExperienceRecords[];
+  isLoadingExperience: boolean;
+  projectsCount: number;
+  isLoadingProjects: boolean;
+};
 
-  // Fetch project count
-  const {
-    data: projectsCount = 0,
-    isLoading: isLoadingProjects,
-  } = useQuery<number>({
-    queryKey: ['projects-count'],
-    queryFn: () => ProjectService.getAllProjectsCount(),
-    staleTime: 1000 * 60 * 60,
-  });
-
+const Info = ({
+  experience,
+  isLoadingExperience,
+  projectsCount,
+  isLoadingProjects,
+}: InfoProps) => {
   // Compute total experience (recalculated when data is fetched)
-  const totalExperience = calculateTotalExperience(experienceRecords);
+  const totalExperience = calculateTotalExperience(experience);
 
   return (
     <div>

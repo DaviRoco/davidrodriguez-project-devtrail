@@ -1,17 +1,20 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
 import DOMPurify from 'dompurify';
 import { useState } from 'react';
-import { CertificationService } from '../../services/CertificationService';
-import { EducationRecordService } from '../../services/EducationRecordService';
-import { ExperienceService } from '../../services/ExperienceRecordService';
 import {
   Certifications,
   EducationalRecords,
-  type ExperienceRecords,
+  type ExperienceRecords
 } from '../../types/types';
 import './qualification.css';
-const Qualification = () => {
+
+type QualificationProps = {
+  experience: ExperienceRecords[];
+  education: EducationalRecords[];
+  certifications: Certifications[];
+};
+
+const Qualification = ({ experience, education, certifications }: QualificationProps) => {
   const [toggleState, setToggleState] = useState(1);
 
   const [toggleModal, setToggleModal] = useState('0');
@@ -19,30 +22,6 @@ const Qualification = () => {
   const toggleModalRecords = (index: string) => {
     setToggleModal(index);
   };
-
-  const {
-    data: experienceRecords = [],
-  } = useQuery<ExperienceRecords[]>({
-    queryKey: ['experience-records-qualification'],
-    queryFn: () => ExperienceService.getAllExperienceRecords(),
-    staleTime: 1000 * 60 * 60, // 1 hour
-  });
-
-  const {
-    data: educationalRecords = [],
-  } = useQuery<EducationalRecords[]>({
-    queryKey: ['education-records-qualification'],
-    queryFn: () => EducationRecordService.getAllEducationalRecords(),
-    staleTime: 1000 * 60 * 60, // 1 hour
-  });
-
-  const {
-    data: certifications = [],
-  } = useQuery<Certifications[]>({
-    queryKey: ['certifications'],
-    queryFn: () => CertificationService.getAllCertifications(),
-    staleTime: 1000 * 60 * 60, // 1 hour
-  });
 
   const toggleTab = (index: number) => {
     setToggleState(index);
@@ -98,7 +77,7 @@ const Qualification = () => {
                 : 'qualification-content'
             }
           >
-            {experienceRecords.map((record, index) =>
+            {experience.map((record, index) =>
               index % 2 === 0 ? (
                 <div key={index} className="qualification-data">
                   <div>
@@ -158,7 +137,7 @@ const Qualification = () => {
                 : 'qualification-content'
             }
           >
-            {educationalRecords.map((record, index) =>
+            {education.map((record, index) =>
               index % 2 === 0 ? (
                 <div key={index} className="qualification-data">
                   <div></div>
@@ -276,7 +255,7 @@ const Qualification = () => {
           </div>
         </div>
       </div>
-      {experienceRecords.map((record) => (
+      {experience.map((record) => (
         <div
           key={record._id}
           className={
@@ -346,7 +325,7 @@ const Qualification = () => {
           </div>
         </div>
       ))}
-      {educationalRecords.map((record) => (
+      {education.map((record) => (
         <div
           key={record._id}
           className={

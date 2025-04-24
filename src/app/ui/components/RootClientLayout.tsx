@@ -1,24 +1,41 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Loader from './loader/Loader';
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+import { useCertifications } from "../hooks/UseCertifications";
+import { useEducationRecords } from "../hooks/UseEducationRecords";
+import { useExperienceRecords } from "../hooks/UseExperienceRecords";
+import { useProjectCounts } from "../hooks/UseProjectCount";
+import { useProjects } from "../hooks/UseProjects";
+import Loader from "./loader/Loader";
 
 export default function RootClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [queryClient] = useState(() => new QueryClient());
 
-  useEffect(() => {
-    // Simulate load delay (or replace with logic to wait for API/data readiness)
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 4000); // 3 seconds
+  const LoaderWrapper = () => {
+    const { isLoading: isLoadingExperience } = useExperienceRecords();
+    const { isLoading: isLoadingProjects } = useProjectCounts();
+    const { isLoading: isLoadingProjectList } = useProjects();
+    const { isLoading: isLoadingEducation } = useEducationRecords();
+    const { isLoading: isLoadingCerts } = useCertifications();
 
-    return () => clearTimeout(timer);
-  }, []);
+    const isLoading =
+      isLoadingExperience ||
+      isLoadingProjects ||
+      isLoadingProjectList ||
+      isLoadingEducation ||
+      isLoadingCerts;
 
-  return isLoading ? <Loader /> : <>{children}</>;
+    return isLoading ? <Loader /> : <>{children}</>;
+  };
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <LoaderWrapper />
+    </QueryClientProvider>
+  );
 }
