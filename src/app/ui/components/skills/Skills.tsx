@@ -1,26 +1,17 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { SkillsService } from '../../services/SkillsService';
+import { useQuery } from '@tanstack/react-query';
+import { SkillService } from '../../services/SkillService';
 import type { Skills } from '../../types/types';
 import './skills.css';
 
 const Skills = () => {
-  const [skillsByCategory, setSkillsByCategory] = useState<{
-    [category: string]: Skills[];
-  }>({});
-
-  useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        const skillsGrouped = await SkillsService.getAllSkillsByCategory();
-        setSkillsByCategory(skillsGrouped);
-      } catch (error) {
-        console.error('Error fetching skills:', error);
-      }
-    };
-
-    fetchSkills();
-  }, []);
+  const {
+    data: skillsByCategory = [],
+  } = useQuery<{ [category: string]: Skills[]; }>({
+    queryKey: ['skills-categorized'],
+    queryFn: () => SkillService.getAllSkillsByCategory(),
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
 
   const orderedCategories = [
     'Programming Languages',
@@ -47,7 +38,7 @@ const Skills = () => {
 
       <div className="skills-container container">
         {orderedCategories.map((category) => {
-          const skills = skillsByCategory[category];
+          const skills = (skillsByCategory as { [category: string]: Skills[] })[category];
           if (!skills) return null;
 
           return (
@@ -59,8 +50,8 @@ const Skills = () => {
               <div className="skills-box">
                 <div className="skills-group">
                   {skills
-                    .sort((a, b) => a._name.localeCompare(b._name))
-                    .map((skill) => (
+                    .sort((a: { _name: string; }, b: { _name: any; }) => a._name.localeCompare(b._name))
+                    .map((skill: Skills) => (
                       <div className="skills-data" key={skill._id}>
                         <i
                           className="bx bx-badge-check"

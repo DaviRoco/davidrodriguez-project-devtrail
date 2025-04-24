@@ -1,7 +1,10 @@
 'use client';
+import { useQuery } from '@tanstack/react-query';
 import DOMPurify from 'dompurify';
-import { useCallback, useEffect, useState } from 'react';
-import { QualificationService } from '../../services/QualificationService';
+import { useState } from 'react';
+import { CertificationService } from '../../services/CertificationService';
+import { EducationRecordService } from '../../services/EducationRecordService';
+import { ExperienceService } from '../../services/ExperienceRecordService';
 import {
   Certifications,
   EducationalRecords,
@@ -10,15 +13,6 @@ import {
 import './qualification.css';
 const Qualification = () => {
   const [toggleState, setToggleState] = useState(1);
-  const [experienceRecords, setExperienceRecords] = useState<
-    ExperienceRecords[]
-  >([]);
-
-  const [educationalRecords, setEducationalRecords] = useState<
-    EducationalRecords[]
-  >([]);
-
-  const [certifications, setCertifications] = useState<Certifications[]>([]);
 
   const [toggleModal, setToggleModal] = useState('0');
 
@@ -26,60 +20,33 @@ const Qualification = () => {
     setToggleModal(index);
   };
 
-  const fetchExperienceRecords = useCallback(async () => {
-    try {
-      const response = await QualificationService.getAllExperienceRecords();
-      const sortedResponse = Array.isArray(response)
-        ? response.sort(
-            (a, b) =>
-              new Date(b._startDate).getTime() -
-              new Date(a._startDate).getTime(),
-          )
-        : [];
-      setExperienceRecords(sortedResponse);
-    } catch (error) {
-      console.error('Error fetching experience records:', error);
-    }
-  }, []);
+  const {
+    data: experienceRecords = [],
+  } = useQuery<ExperienceRecords[]>({
+    queryKey: ['experience-records-qualification'],
+    queryFn: () => ExperienceService.getAllExperienceRecords(),
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
 
-  const fetchEducationalRecords = useCallback(async () => {
-    try {
-      const response = await QualificationService.getAllEducationalRecords();
-      const sortedResponse = Array.isArray(response)
-        ? response.sort(
-            (a, b) =>
-              new Date(b._endDate).getTime() - new Date(a._endDate).getTime(),
-          )
-        : [];
-      setEducationalRecords(sortedResponse);
-    } catch (error) {
-      console.error('Error fetching educational records:', error);
-    }
-  }, []);
+  const {
+    data: educationalRecords = [],
+  } = useQuery<EducationalRecords[]>({
+    queryKey: ['education-records-qualification'],
+    queryFn: () => EducationRecordService.getAllEducationalRecords(),
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
 
-  const fetchCertifications = useCallback(async () => {
-    try {
-      const response = await QualificationService.getAllCertifications();
-      const sortedResponse = Array.isArray(response)
-        ? response.sort(
-            (a, b) => new Date(b._date).getTime() - new Date(a._date).getTime(),
-          )
-        : [];
-      setCertifications(sortedResponse);
-    } catch (error) {
-      console.error('Error fetching certifications:', error);
-    }
-  }, []);
+  const {
+    data: certifications = [],
+  } = useQuery<Certifications[]>({
+    queryKey: ['certifications'],
+    queryFn: () => CertificationService.getAllCertifications(),
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
 
   const toggleTab = (index: number) => {
     setToggleState(index);
   };
-
-  useEffect(() => {
-    fetchExperienceRecords();
-    fetchEducationalRecords();
-    fetchCertifications();
-  }, [fetchExperienceRecords, fetchEducationalRecords, fetchCertifications]);
 
   return (
     <section className="qualification section" id="qualification">

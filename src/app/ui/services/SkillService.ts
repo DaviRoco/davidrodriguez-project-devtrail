@@ -3,7 +3,7 @@ import { Skills } from '../types/types';
 
 let cachedSkills: { [categoryName: string]: Skills[] } | null = null;
 
-export class SkillsService {
+export class SkillService {
   private static skillsApiUrl = '/api/skills';
 
   public static async getAllSkillsByCategory(): Promise<{ [categoryName: string]: Skills[] }> {
