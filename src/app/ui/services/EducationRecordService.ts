@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { Certifications, EducationalRecords } from '../types/types';
+import { EducationalRecords } from '../types/types';
 
 let cachedEducationalRecords: EducationalRecords[] | null = null;
-let cachedCertifications: Certifications[] | null = null;
 
 export class EducationRecordService {
   private static educationalRecordsApiUrl = '/api/records?type=education';

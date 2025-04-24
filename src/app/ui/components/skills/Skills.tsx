@@ -1,17 +1,12 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import { SkillService } from '../../services/SkillService';
+import { useSkillsCategorized } from '../../hooks/UseSkillsCategorized';
 import type { Skills } from '../../types/types';
 import './skills.css';
 
 const Skills = () => {
   const {
     data: skillsByCategory = [],
-  } = useQuery<{ [category: string]: Skills[]; }>({
-    queryKey: ['skills-categorized'],
-    queryFn: () => SkillService.getAllSkillsByCategory(),
-    staleTime: 1000 * 60 * 60, // 1 hour
-  });
+  } = useSkillsCategorized();
 
   const orderedCategories = [
     'Programming Languages',
@@ -50,7 +45,7 @@ const Skills = () => {
               <div className="skills-box">
                 <div className="skills-group">
                   {skills
-                    .sort((a: { _name: string; }, b: { _name: any; }) => a._name.localeCompare(b._name))
+                    .sort((a: { _name: string; }, b: { _name: string; }) => a._name.localeCompare(b._name))
                     .map((skill: Skills) => (
                       <div className="skills-data" key={skill._id}>
                         <i
