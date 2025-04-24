@@ -2,9 +2,23 @@
 
 import Image from 'next/image';
 import AboutImg from '../../assets/profile.png';
+import { ExperienceRecords } from '../../types/types';
 import './about.css';
 import Info from './Info';
-const About = () => {
+
+type AboutProps = {
+  experience: ExperienceRecords[];
+  isLoadingExperience: boolean;
+  projectsCount: number;
+  isLoadingProjects: boolean;
+};
+
+const About = ({
+  experience,
+  isLoadingExperience,
+  projectsCount,
+  isLoadingProjects,
+}: AboutProps) => {
   return (
     <div>
       <section className="about section" id="about">
@@ -14,7 +28,12 @@ const About = () => {
         <div className="about-container container grid">
           <Image src={AboutImg} alt="" className="about-img"></Image>
           <div className="about-data">
-            <Info></Info>
+            <Info
+              experience={experience}
+              isLoadingExperience={isLoadingExperience}
+              projectsCount={projectsCount}
+              isLoadingProjects={isLoadingProjects}
+            ></Info>
 
             <p className="about-description">
               Innovative Software Engineer specializing in AI-driven full-stack

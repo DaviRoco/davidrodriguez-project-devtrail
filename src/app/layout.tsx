@@ -3,7 +3,7 @@ import './globals.css';
 import RootClientLayout from './ui/components/RootClientLayout';
 
 export const metadata: Metadata = {
-  title: 'DevFolio - David Rodríguez',
+  title: 'DevTrail - David Rodríguez',
   description: 'David Rodríguez personal portfolio',
 };
 
@@ -12,6 +12,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <head>

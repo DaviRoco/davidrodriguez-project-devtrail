@@ -1,38 +1,22 @@
 'use client';
-import React, { useCallback, useEffect, useState } from 'react';
-import './portfolio.css';
-import { PortfolioService } from '../../services/PortfolioService';
-import { Projects } from '../../types/types';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Projects } from '../../types/types';
+import './portfolio.css';
 
-const Portfolio = () => {
-  const [projects, setProjects] = useState<Projects[]>([]);
+type ProjectProps = {
+  projects: Projects[];
+};
+
+const Portfolio = ({ projects }: ProjectProps) => {
   const [toggleState, setToggleState] = useState('0');
 
   const toggleTab = (index: string) => {
     setToggleState(index);
   };
-  const fetchProjects = useCallback(async () => {
-    try {
-      const response = await PortfolioService.getAllProjects();
-      const sortedResponse = Array.isArray(response)
-        ? response.sort(
-            (a, b) =>
-              new Date(b._endDate).getTime() - new Date(a._endDate).getTime(),
-          )
-        : [];
-      setProjects(sortedResponse);
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
 
   return (
     <section className="portfolio container section" id="portfolio">
