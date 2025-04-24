@@ -31,7 +31,7 @@ export default function App() {
 
   const { data: certifications = [] } = useCertifications();
 
-  const { data: skillsByCategory } = useSkillsCategorized();
+  const { data: skillsByCategory = [] } = useSkillsCategorized();
 
   return (
     <div className={styles.page}>

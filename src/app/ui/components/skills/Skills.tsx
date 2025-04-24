@@ -3,7 +3,7 @@ import type { Skills } from '../../types/types';
 import './skills.css';
 
 type SkillsProps = {
-  skillsByCategory: { [category: string]: Skills[] } | undefined;
+  skillsByCategory: { [category: string]: Skills[] } | never[];
 };
 
 const Skills = ({ skillsByCategory }: SkillsProps) => {
