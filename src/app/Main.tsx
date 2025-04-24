@@ -16,17 +16,22 @@ import { useEducationRecords } from './ui/hooks/UseEducationRecords';
 import { useExperienceRecords } from './ui/hooks/UseExperienceRecords';
 import { useProjectCounts } from './ui/hooks/UseProjectCount';
 import { useProjects } from './ui/hooks/UseProjects';
+import { useSkillsCategorized } from './ui/hooks/UseSkillsCategorized';
 
 export default function App() {
-  const { data: experienceRecords = [], isLoading: isLoadingExperience } = useExperienceRecords();
-  
-  const { data: projectsCount = 0, isLoading: isLoadingProjects } = useProjectCounts();
- 
+  const { data: experienceRecords = [], isLoading: isLoadingExperience } =
+    useExperienceRecords();
+
+  const { data: projectsCount = 0, isLoading: isLoadingProjects } =
+    useProjectCounts();
+
   const { data: projects = [] } = useProjects();
-  
+
   const { data: educationalRecords = [] } = useEducationRecords();
 
   const { data: certifications = [] } = useCertifications();
+
+  const { data: skillsByCategory } = useSkillsCategorized();
 
   return (
     <div className={styles.page}>
@@ -39,7 +44,7 @@ export default function App() {
           projectsCount={projectsCount}
           isLoadingProjects={isLoadingProjects}
         />
-        <Skills />
+        <Skills skillsByCategory={skillsByCategory} />
         <Solutions />
         <Portfolio projects={projects} />
         <Qualification

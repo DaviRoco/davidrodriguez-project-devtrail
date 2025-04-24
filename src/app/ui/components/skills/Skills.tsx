@@ -1,13 +1,12 @@
 'use client';
-import { useSkillsCategorized } from '../../hooks/UseSkillsCategorized';
 import type { Skills } from '../../types/types';
 import './skills.css';
 
-const Skills = () => {
-  const {
-    data: skillsByCategory = [],
-  } = useSkillsCategorized();
+type SkillsProps = {
+  skillsByCategory: { [category: string]: Skills[] } | undefined;
+};
 
+const Skills = ({ skillsByCategory }: SkillsProps) => {
   const orderedCategories = [
     'Programming Languages',
     'Frameworks and Libraries',
