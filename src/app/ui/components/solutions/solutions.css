@@ -10,7 +10,11 @@
   position: relative;
   border: 1px solid rgba(196, 186, 186, 0.1);
   background-color: var(--container-color);
-  padding: 6rem 0 2rem 2.5rem;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
 }
 
 .services-icon {
@@ -144,6 +148,12 @@
   .services-container {
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     justify-items: center;
+  }
+
+  .services-content {
+    width: 90%;
+    height: 200px;
+    padding: 1.5rem;
   }
 
   .services-modal-content {

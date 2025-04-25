@@ -75,6 +75,60 @@ const Solutions = () => {
           </div>
         </div>
 
+        {/* Cloud Architecture & Deployment */}
+        <div className="services-content">
+          <div>
+            <i className="uil uil-cloud-check services-icon"></i>
+            <h3 className="services-title">Cloud Architecture</h3>
+          </div>
+
+          <span className="services-button" onClick={() => toggleTab(4)}>
+            View More
+            <i className="uil uil-arrow-right services-button-icon"></i>
+          </span>
+
+          <div
+            className={
+              toggleState === 4
+                ? 'services-modal active-modal'
+                : 'services-modal'
+            }
+          >
+            <div className="services-modal-content">
+              <i
+                onClick={() => toggleTab(0)}
+                className="uil uil-times services-modal-close"
+              ></i>
+
+              <h3 className="services-modal-title">Cloud Architecture & Deployment</h3>
+              <p className="services-modal-description">
+                Architecting scalable cloud infrastructure with security, performance, and cost-efficiency in mind.
+              </p>
+
+              <ul className="services-modal-services grid">
+                <li className="services-modal-service">
+                  <i className="uil uil-check-circle services-modal-icon"></i>
+                  <p className="services-modal-info">
+                    Trained in AWS architecture and cloud-native deployments.
+                  </p>
+                </li>
+                <li className="services-modal-service">
+                  <i className="uil uil-check-circle services-modal-icon"></i>
+                  <p className="services-modal-info">
+                    Deployed projects using Docker, Firebase, and CI/CD workflows.
+                  </p>
+                </li>
+                <li className="services-modal-service">
+                  <i className="uil uil-check-circle services-modal-icon"></i>
+                  <p className="services-modal-info">
+                    Managed Dev/QA/Prod environments with secure multi-tenant access.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Project Coordination */}
         <div className="services-content">
           <div>
@@ -182,60 +236,6 @@ const Solutions = () => {
                   <i className="uil uil-check-circle services-modal-icon"></i>
                   <p className="services-modal-info">
                     Helped teams scale systems and refine developer workflows.
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Cloud Architecture & Deployment */}
-        <div className="services-content">
-          <div>
-            <i className="uil uil-cloud-check services-icon"></i>
-            <h3 className="services-title">Cloud Architecture</h3>
-          </div>
-
-          <span className="services-button" onClick={() => toggleTab(4)}>
-            View More
-            <i className="uil uil-arrow-right services-button-icon"></i>
-          </span>
-
-          <div
-            className={
-              toggleState === 4
-                ? 'services-modal active-modal'
-                : 'services-modal'
-            }
-          >
-            <div className="services-modal-content">
-              <i
-                onClick={() => toggleTab(0)}
-                className="uil uil-times services-modal-close"
-              ></i>
-
-              <h3 className="services-modal-title">Cloud Architecture & Deployment</h3>
-              <p className="services-modal-description">
-                Architecting scalable cloud infrastructure with security, performance, and cost-efficiency in mind.
-              </p>
-
-              <ul className="services-modal-services grid">
-                <li className="services-modal-service">
-                  <i className="uil uil-check-circle services-modal-icon"></i>
-                  <p className="services-modal-info">
-                    Trained in AWS architecture and cloud-native deployments.
-                  </p>
-                </li>
-                <li className="services-modal-service">
-                  <i className="uil uil-check-circle services-modal-icon"></i>
-                  <p className="services-modal-info">
-                    Deployed projects using Docker, Firebase, and CI/CD workflows.
-                  </p>
-                </li>
-                <li className="services-modal-service">
-                  <i className="uil uil-check-circle services-modal-icon"></i>
-                  <p className="services-modal-info">
-                    Managed Dev/QA/Prod environments with secure multi-tenant access.
                   </p>
                 </li>
               </ul>

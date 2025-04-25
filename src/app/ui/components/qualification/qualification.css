@@ -211,7 +211,6 @@
   font-size: var(--small-font-size);
 }
 
-/* Styled HTML content for experience descriptions */
 .qualification-html-details {
   font-size: var(--small-font-size);
   line-height: 1.6;
@@ -296,6 +295,12 @@
   .qualification-button {
     margin: 0 var(--mb-0-75);
     font-size: var(--normal-font-size);
+  }
+
+  .qualification-modal-title {
+    max-width: 90%;
+    word-break: normal;
+    font-size: var(--h4-font-size);
   }
 
   .qualification-modal-project {
