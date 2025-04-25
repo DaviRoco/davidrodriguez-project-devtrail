@@ -24,9 +24,30 @@
 }
 
 .home-title {
+  position: relative;
   font-size: var(--big-font-size);
   margin-bottom: var(--mb-0-25);
   color: var(--title-color);
+  display: inline-block;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.home-title::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: hsl(248, 32%, 36%);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.home-title:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .home-rocket {
@@ -38,18 +59,8 @@
 .home-subtitle {
   position: relative;
   font-size: var(--h3-font-size);
-  padding-left: 5.4rem;
   font-weight: var(--font-weight-regular);
   margin-bottom: var(--mb-1);
-}
-.home-subtitle:before {
-  content: '';
-  position: absolute;
-  width: 70px;
-  height: 1px;
-  background-color: var(--text-color);
-  left: 0;
-  top: 1rem;
 }
 
 .home-description {

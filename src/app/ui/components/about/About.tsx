@@ -36,26 +36,22 @@ const About = ({
             ></Info>
 
             <p className="about-description">
-              Innovative Software Engineer specializing in AI-driven full-stack
-              development and cloud solutions. With a strong foundation in
-              software engineering and a passion for AI, I design and optimize
-              scalable applications that enhance efficiency and performance.
+              I'm a Software Engineer who loves turning ideas into smart,
+              full-stack solutions that solve real life problems. I focus on
+              building AI-driven apps using my Full-stack knowledge and cloud systems that are fast, secure,
+              and ready to scale. I always aim to mix solid engineering with a
+              bit of creativity and a lot of innovation.
               <br /> <br />
-              I thrive in Agile environments, leading projects that integrate AI
-              technologies to deliver intelligent, high-impact solutions. My
-              expertise in AWS cloud architecture enables me to build resilient
-              and cost-effective systems, optimizing workflows and reducing
-              operational overhead.
-              <br /> <br />
-              Beyond coding, I actively contribute to Agile collaboration
-              through code reviews, sprint planning, and mentoring, ensuring
-              continuous improvement and knowledge sharing within teams. I’m
-              always eager to explore emerging technologies and push the
-              boundaries of what’s possible with AI-driven development.
+              I thrive in Agile teams where there's room to
+              collaborate, learn from each other, and grow together. Whether
+              it's brainstorming new features, or just solving tricky
+              bugs, I enjoy being part of a team that's always moving forward.
+              I'm especially excited about where AI is headed and how we can use
+              it in our work environment to enhance our productivity and make great applications!
             </p>
 
             <a
-              href="/David Rodriguez Coto - Resume 2025.pdf"
+              href="/David Rodriguez Resume.pdf"
               download
               className="button button--flex"
             >

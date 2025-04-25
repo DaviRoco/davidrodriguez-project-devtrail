@@ -27,7 +27,7 @@ const Skills = ({ skillsByCategory }: SkillsProps) => {
     <section className="skills section" id="skills">
       <h2 className="section-title">Skills</h2>
       <span className="section-subtitle">
-        A categorized overview of the technologies and tools I work with
+        An overview of the technologies and tools I work with.
       </span>
 
       <div className="skills-container container">
