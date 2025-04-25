@@ -36,17 +36,17 @@ const About = ({
             ></Info>
 
             <p className="about-description">
-              I'm a Software Engineer who loves turning ideas into smart,
+              I&apos;m a Software Engineer who loves turning ideas into smart,
               full-stack solutions that solve real life problems. I focus on
               building AI-driven apps using my Full-stack knowledge and cloud systems that are fast, secure,
               and ready to scale. I always aim to mix solid engineering with a
               bit of creativity and a lot of innovation.
               <br /> <br />
-              I thrive in Agile teams where there's room to
+              I thrive in Agile teams where there&apos;s room to
               collaborate, learn from each other, and grow together. Whether
-              it's brainstorming new features, or just solving tricky
-              bugs, I enjoy being part of a team that's always moving forward.
-              I'm especially excited about where AI is headed and how we can use
+              it&apos;s brainstorming new features, or just solving tricky
+              bugs, I enjoy being part of a team that&apos;s always moving forward.
+              I&apos;m especially excited about where AI is headed and how we can use
               it in our work environment to enhance our productivity and make great applications!
             </p>
 
