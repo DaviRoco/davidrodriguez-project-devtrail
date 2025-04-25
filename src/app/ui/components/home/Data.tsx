@@ -27,8 +27,11 @@ const Data = () => {
 
       <h3 className="home-subtitle">Full-Stack Developer/Engineer</h3>
       <p className="home-description">
-        I&apos;m a passionate software developer who thrives on innovating code
-        and creating solutions for everyday challenges. Let&apos;s connect!
+      Hi there! I'm a passionate full-stack developer who loves building creative solutions to real-world problems, especially when I get to bring AI into the mix.
+      <br /> <br /> 
+      Whether it's crafting smart applications or exploring new ways to deploy and manage them in the cloud, I'm always excited about what tech can do.
+      <br /> <br />
+      Let's connect!
       </p>
 
       <a href="#contact" className="button button--flex">

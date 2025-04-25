@@ -1,4 +1,3 @@
-import React from 'react';
 import './footer.css';
 
 const Footer = () => {
@@ -44,7 +43,7 @@ const Footer = () => {
         </div>
 
         <span className="footer-copy">
-          &#169; 2024 David Rodríguez Coto. All rights reserved.
+          &#169; 2025 David Rodríguez Coto. All rights reserved.
         </span>
       </div>
     </footer>
