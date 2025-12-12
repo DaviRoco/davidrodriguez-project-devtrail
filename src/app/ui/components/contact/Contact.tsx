@@ -1,33 +1,47 @@
 'use client';
-import emailjs from '@emailjs/browser';
 import React, { useRef, useState } from 'react';
 import './contact.css';
+
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
-  const [isCooldown, setIsCooldown] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if ((form.current as HTMLFormElement)['honeypot']?.value) return;
-    
-    if (isCooldown) return;
+    if (!form.current) return;
 
-    setIsCooldown(true);
-    if (form.current) {
-      emailjs
-        .sendForm(
-          'service_bo7iv3i',
-          'template_5covz5b',
-          form.current,
-          'tbu7V4DUsZCQeu8xe',
-        )
-        .then(() => {
-          (e.target as HTMLFormElement).reset();
-          setTimeout(() => setIsCooldown(false), 60000);
-        })
-        .catch(() => {
-          setIsCooldown(false);
-        });
+    // Client-side honeypot check (in addition to FormSubmit's server-side one)
+    const honeypot = form.current.querySelector('input[name="_honey"]') as HTMLInputElement;
+    if (honeypot && honeypot.value) return;
+
+    setStatus('sending');
+
+    const formData = new FormData(form.current);
+
+    try {
+      // Using AJAX to keep the user on the page
+      const response = await fetch("https://formsubmit.co/ajax/fc8317b6fdfac495097b9236829cc04c", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(formData))
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.current.reset();
+        // Reset status after a few seconds
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error("Email error:", error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
     }
   };
 
@@ -59,9 +73,15 @@ const Contact = () => {
         </div>
 
         <div className="contact-content">
-          <h3 className="contact-title"></h3>
+          <h3 className="contact-title">Write me your project</h3>
 
           <form ref={form} onSubmit={sendEmail} className="contact-form">
+            {/* FormSubmit.co Configuration */}
+            <input type="hidden" name="_subject" value="New Portfolio Contact Reference" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" style={{ display: 'none' }} />
+
             <div className="contact-form-div">
               <label className="contact-form-tag">Name</label>
               <input
@@ -69,6 +89,7 @@ const Contact = () => {
                 name="name"
                 className="contact-form-input"
                 placeholder="Insert your name"
+                required
               />
             </div>
 
@@ -79,6 +100,7 @@ const Contact = () => {
                 name="email"
                 className="contact-form-input"
                 placeholder="Insert your email"
+                required
               />
             </div>
 
@@ -90,10 +112,20 @@ const Contact = () => {
                 rows={10}
                 placeholder="Write your message here..."
                 className="contact-form-input"
+                required
               ></textarea>
             </div>
-            <button className="button button--flex"  disabled={isCooldown}>
-              {isCooldown ? 'Please wait...' : 'Send Message'}
+
+            <button
+              className="button button--flex"
+              disabled={status === 'sending' || status === 'success'}
+              style={{ opacity: status === 'sending' ? 0.7 : 1 }}
+            >
+              {status === 'sending' && 'Sending...'}
+              {status === 'success' && 'Message Sent!'}
+              {status === 'error' && 'Error. Try Again.'}
+              {status === 'idle' && 'Send Message'}
+
               <svg
                 className="button-icon"
                 width="24"
@@ -104,20 +136,19 @@ const Contact = () => {
               >
                 <path
                   d="M7.39969 6.32015L15.8897 3.49015C19.6997 2.22015 21.7697 4.30015 20.5097 8.11015L17.6797 16.6002C15.7797 22.3102 12.6597 22.3102 10.7597 16.6002L9.91969 14.0802L7.39969 13.2402C1.68969 11.3402 1.68969 8.23015 7.39969 6.32015Z"
-                  stroke="#292D32"
+                  stroke={status === 'success' ? "#4CAF50" : "#292D32"}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   opacity="0.34"
                   d="M10.1094 13.6501L13.6894 10.0601"
-                  stroke="#292D32"
+                  stroke={status === 'success' ? "#4CAF50" : "#292D32"}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
             </button>
-            <input type="text" name="honeypot" style={{ display: 'none' }} tabIndex={-1} />
           </form>
         </div>
       </div>

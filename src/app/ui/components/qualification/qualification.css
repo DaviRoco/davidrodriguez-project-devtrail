@@ -10,33 +10,36 @@
 
 .qualification-button {
   font-size: var(--h3-font-size);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-medium);
   color: var(--title-color);
   margin: 0 var(--mb-1);
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .qualification-button:hover {
-  color: var(--title-color-dark);
+  color: var(--primary-color);
 }
 
 .qualification-icon {
   font-size: 1.8rem;
   margin-right: var(--mb-0-25);
+  transition: 0.3s;
 }
 
 .qualification-active {
-  color: var(--title-color-dark);
+  color: var(--primary-color);
+  transform: scale(1.05);
 }
 
 .qualification-sections {
-  display: grid;
-  grid-template-columns: 0.5fr;
+  display: flex;
   justify-content: center;
 }
 
 .qualification-content {
   display: none;
+  width: 100%;
 }
 
 .qualification-content-active {
@@ -51,13 +54,14 @@
 
 .qualification-title {
   font-size: var(--normal-font-size);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-medium);
 }
 
 .qualification-subtitle {
   display: inline-block;
   font-size: var(--small-font-size);
   margin-bottom: var(--mb-1);
+  color: var(--text-color-light);
 }
 
 .qualification-more-details {
@@ -66,44 +70,51 @@
 
 .qualification-rounder {
   display: inline-block;
-  width: 13px;
-  height: 13px;
-  background-color: var(--text-color);
+  width: 16px;
+  height: 16px;
+  background-color: var(--primary-color);
   border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary-color);
+  z-index: 10;
+  position: relative;
 }
 
 .qualification-line {
   display: block;
-  width: 1px;
+  width: 2px;
   height: 100%;
-  background-color: var(--text-color);
-  transform: translate(6px, -7px);
+  background-color: var(--text-color-light);
+  transform: translate(7px, -7px);
+  opacity: 0.3;
 }
 
-.qualification-calendar-icon {
-  padding-right: var(--mb-0-25);
-}
 .qualification-more-button {
-  color: var(--title-color);
+  color: var(--primary-color);
   font-size: var(--small-font-size);
   display: inline-flex;
   align-items: center;
   column-gap: 0.25rem;
   cursor: pointer;
+  font-weight: var(--font-medium);
 }
 
 .qualification-button-icon {
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: 0.3s;
 }
 
+.qualification-more-button:hover .qualification-button-icon {
+  transform: translateX(0.25rem);
+}
+
+/* Modal */
 .qualification-modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(128, 120, 120, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: var(--z-modal);
   display: flex;
   justify-content: center;
@@ -112,80 +123,107 @@
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
+  backdrop-filter: blur(5px);
 }
 
 .qualification-modal-content {
-  width: 800px;
+  width: 600px;
+  max-height: 85vh;
   position: relative;
-  background-color: var(--container-color);
-  padding: 4.5rem 2.5rem 2.5rem;
+  background: var(--container-color);
+  padding: 2rem;
   border-radius: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;
 }
 
-.qualification-modal-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
-  color: var(--title-color);
-  cursor: pointer;
+/* Header */
+/* Note: Qualification.tsx has <div className="qualification-modal-content"> <i close> <title> <content> */
+/* We need to use CSS to order them or trust they are siblings. In Qualification.tsx, they are: Close, Title, Services. */
+/* We can use flex order or make the close button absolute but sticky INSIDE the flex container's top area. */
+/* OR we can create a psuedo-header via flex layout. */
+
+.qualification-modal-content>.qualification-modal-close {
+  align-self: flex-end;
+  /* Places it to the right */
+  position: relative;
+  top: 0;
+  right: 0;
+  margin-bottom: 0.5rem;
 }
+
+/* Since the Title is next, we want it centered? */
+/* Actually, Qualification.tsx structure is flat inside modal-content. */
+/* Let's style the content as column. */
 
 .qualification-modal-title {
   text-align: center;
-}
-
-.qualification-modal-title {
   font-size: var(--h3-font-size);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-medium);
   margin-bottom: var(--mb-1);
+  flex-shrink: 0;
 }
 
-.qualification-modal-description {
-  text-align: justify;
-  margin-bottom: var(--mb-2);
-  padding: 0 3.5rem;
-  max-width: 100%;
-}
+/* Wrapper for scrollable stuff? Qualification.tsx does NOT have a wrapper div for the body content.
+   It has: Close(i), Title(h3), Services(div), BR, Services(ul).
+   We can make the modal-content scrollable, OR better, since we can't easily change TSX structure right now without another write,
+   we can stick to the sticky close button approach BUT fix the overflow issue.
+   
+   If we use display: flex; flex-direction: column; 
+   and overflow-y: auto on modal-content:
+   the close button scrolls out.
+   
+   If we want "Escape cannot fail", the close button must be OUTSIDE the scroll view.
+   We can change Qualification.tsx or use position: absolute on the close button and padding-top on the modal content, 
+   BUT the modal content must scroll.
+   If modal-content scrolls, absolute children scroll with it.
+   
+   Hack: Move the close button to be `position: fixed` or `sticky`. 
+   Sticky works if it is the first child.
+*/
 
-.qualification-modal-projects {
-  row-gap: 0.75rem;
-}
-.qualification-button-icon {
-  font-size: 1rem;
-  transition: 0.3s;
-}
-.qualification-button-name-icon {
-  margin-left: 0.5rem;
-}
-.qualification-modal-project {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  padding: 0 3.5rem;
-}
-
-.qualification-modal-subtitle {
-  display: flex;
-  align-items: center;
-  font-size: var(--normal-font-size);
-  font-weight: bold;
-  color: var(--title-color);
-}
-
-.qualification-modal-extra-icon {
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
+.qualification-modal-close {
+  position: sticky;
+  top: 0;
+  right: 0;
+  margin-left: auto;
+  /* Force to right */
+  font-size: 1.8rem;
   color: var(--primary-color);
+  cursor: pointer;
+  z-index: 20;
+  background: var(--container-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
 }
 
-.qualification-modal-icon {
-  font-size: 1.1rem;
-  color: var(--title-color);
+/* Make the content scrollable */
+.qualification-modal-content {
+  overflow-y: auto;
+  /* Scrollbar */
+  scrollbar-width: thin;
+}
+
+.qualification-modal-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.qualification-modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--text-color-light);
+  border-radius: 0.5rem;
 }
 
 .qualification-modal-info {
   font-size: var(--small-font-size);
+  color: var(--text-color);
 }
 
 .active-modal {
@@ -193,172 +231,54 @@
   visibility: visible;
 }
 
+/* Formatting for modal text */
 .qualification-modal-services {
-  row-gap: 0.75rem;
+  row-gap: 1rem;
 }
 
-.qualification-modal-service {
-  display: flex;
-  column-gap: 0.5rem;
-}
-
-.qualification-modal-icon {
-  font-size: 1.1rem;
-  color: var(--title-color);
-}
-
-.qualification-modal-info {
-  font-size: var(--small-font-size);
-}
-
-.qualification-html-details {
-  font-size: var(--small-font-size);
-  line-height: 1.6;
-  margin-top: 1rem;
-  padding: 0 3.5rem;
-  color: var(--text-color);
-}
-
-.qualification-html-details h3 {
-  font-size: var(--normal-font-size);
-  font-weight: bold;
-  margin: 1.25rem 0 0.75rem;
-  color: var(--title-color);
-}
-
-.qualification-html-details p {
-  margin-bottom: 0.75rem;
-}
-
-.qualification-html-details ul {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
-}
-
-.qualification-html-details li {
-  list-style-type: disc;
-  margin-bottom: 0.4rem;
-}
-
-.qualification-html-details hr {
-  border: none;
-  border-top: 1px solid var(--text-color);
-  margin: 1.5rem 0;
-}
-
-@media screen and (max-width: 992px) {
-  .qualification-container {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .qualification-modal-content {
-    width: 600px;
-    padding: 3rem 2rem;
-  }
-}
-
+/* ============ Breakpoints ============ */
 @media screen and (max-width: 768px) {
   .qualification-container {
-    margin-left: var(--mb-1);
+    margin-left: var(--mb-1-5);
     margin-right: var(--mb-1-5);
   }
 
+  .qualification-data {
+    grid-template-columns: max-content 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Force vertical alignment */
+  .qual-col-empty {
+    display: none;
+  }
+
+  .qual-col-content {
+    order: 2;
+    padding-bottom: 2rem;
+  }
+
+  .qual-col-line {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .qualification-modal-content {
-    width: 90%;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .qualification-modal-title {
-    font-size: var(--h4-font-size);
-  }
-
-  .qualification-html-details {
-    padding: 0 1.5rem;
+    width: 90vw;
+    padding: 2rem 1.5rem;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .qualification-sections {
-    grid-template-columns: initial;
-  }
-
-  .qualification-modal-content {
-    width: 100%;
-    border-radius: 0;
-    padding: 2rem 1rem;
-    border-radius: 1.5rem;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  .qualification-button {
-    margin: 0 var(--mb-0-75);
-    font-size: var(--normal-font-size);
-  }
-
-  .qualification-modal-title {
-    max-width: 90%;
-    word-break: normal;
-    font-size: var(--h4-font-size);
-  }
-
-  .qualification-modal-project {
-    padding: 0 1rem;
+  .qualification-tabs {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 1rem;
   }
 
-  .qualification-modal-extra-icon {
-    font-size: 1rem;
-  }
-
-  .qualification-html-details {
-    padding: 0 1rem;
-    font-size: var(--smaller-font-size);
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .qualification-sections {
-    grid-template-columns: initial;
-  }
-  .qualification-icon {
-    display: none;
-  }
-
-  .qualification-data {
-    gap: 0.5rem;
-  }
-
-  .qualification-modal-title,
-  .qualification-modal-info,
   .qualification-button {
-    font-size: var(--smaller-font-size);
-  }
-
-  .qualification-data {
-    gap: 0.5rem;
-  }
-
-  .qualification-modal-content {
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 1.5rem 0.5rem;
-  }
-
-  .qualification-modal-close {
-    font-size: 1.2rem;
-    top: 1rem;
-    right: 1rem;
-  }
-
-  .qualification-modal {
-    min-height: 100dvh;
-  }
-
-  .qualification-html-details {
-    padding: 0 0.5rem;
-    font-size: var(--smaller-font-size);
+    font-size: var(--normal-font-size);
   }
 }

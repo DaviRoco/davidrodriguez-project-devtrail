@@ -68,8 +68,9 @@ const Portfolio = ({ projects }: ProjectProps) => {
               ? 'portfolio-modal active-modal'
               : 'portfolio-modal'
           }
+          onClick={() => toggleTab('0')}
         >
-          <div className="portfolio-modal-content">
+          <div className="portfolio-modal-content" onClick={(e) => e.stopPropagation()}>
             <i
               onClick={() => toggleTab('0')}
               className="uil uil-times portfolio-modal-close"
@@ -122,6 +123,7 @@ const Portfolio = ({ projects }: ProjectProps) => {
                       target="_blank"
                       rel="noreferrer"
                       className="portfolio-modal-subtitle"
+                      style={{ textDecoration: 'underline' }}
                     >
                       {project._url}
                     </a>

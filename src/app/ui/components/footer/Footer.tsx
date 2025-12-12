@@ -29,6 +29,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/david-rodriguez-coto"
             className="footer-social-link"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="bx bxl-linkedin"></i>
           </a>
@@ -37,6 +38,7 @@ const Footer = () => {
             href="https://github.com/DaviRoco"
             className="footer-social-link"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="bx bxl-github"></i>
           </a>

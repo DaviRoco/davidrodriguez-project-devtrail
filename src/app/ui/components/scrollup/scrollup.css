@@ -2,21 +2,24 @@
   position: fixed;
   right: 2.5rem;
   bottom: -20%;
-  background-color: var(--title-color);
+  background-color: var(--primary-color);
   opacity: 0.8;
-  padding: 0.3rem 0.5rem;
-  border-radius: 0.4rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
   z-index: var(--z-tooltip);
   transition: 0.4s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .scrollup-icon {
   font-size: 1.5rem;
-  color: var(--container-color);
+  color: #fff;
 }
 
 .scrollup:hover {
-  background-color: var(--title-color-dark);
+  background-color: var(--primary-color-alt);
+  transform: translateY(-3px);
+  opacity: 1;
 }
 
 .show-scroll {
@@ -26,7 +29,7 @@
 @media screen and (max-width: 992px) {
   .scrollup {
     right: 1.5rem;
-    padding: 0.2rem 0.4rem;
+    padding: 0.35rem 0.5rem;
   }
 
   .scrollup-icon {
@@ -36,7 +39,8 @@
 
 @media screen and (max-width: 768px) {
   .show-scroll {
-    bottom: 4rem;
+    bottom: 5rem;
+    /* Avoid covering bottom nav/footer content if close */
   }
 }
 

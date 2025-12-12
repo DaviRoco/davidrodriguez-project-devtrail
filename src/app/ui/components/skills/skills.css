@@ -1,37 +1,39 @@
 .skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  display: grid;
 }
 
 .skills-content {
-  flex: 1 1 320px;
-  max-width: 400px;
-  background-color: var(--container-color);
-  border: 1px solid rgba(131, 122, 122, 0.5);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   padding: 2rem;
-  border-radius: 1.25rem;
-  transition: transform 0.2s ease-in-out;
+  border-radius: 1.5rem;
+  transition: .3s;
+  box-shadow: var(--glass-shadow);
+  height: 100%;
+  /* Equal height */
 }
 
 .skills-content:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .skills-category-title {
   font-size: var(--h3-font-size);
-  font-weight: var(--font-weight-semi-bold);
-  color: var(--title-color);
+  font-weight: var(--font-medium);
   text-align: center;
   margin-bottom: var(--mb-1-5);
+  color: var(--primary-color);
 }
 
 .skills-category-description {
   font-size: var(--small-font-size);
-  color: var(--text-color-light);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  color: var(--text-color-light);
 }
 
 .skills-box {
@@ -40,54 +42,61 @@
 }
 
 .skills-group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 2rem;
-  row-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .skills-data {
   display: flex;
+  align-items: center;
   column-gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem 1.25rem;
+  border-radius: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: .3s;
+}
+
+.skills-data:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  border-color: var(--primary-color);
 }
 
 .skills .bx-badge-check {
-  font-size: 1rem;
-  color: var(--title-color);
+  font-size: 1.25rem;
+  color: var(--primary-color);
 }
 
 .skills-name {
   font-size: var(--normal-font-size);
-  font-weight: var(--font-weight-regular);
-  line-height: 18px;
+  font-weight: var(--font-medium);
+  line-height: 1;
 }
 
 .skills-level {
   font-size: var(--tiny-font-size);
   color: var(--text-color-light);
+  display: none;
+  /* Hiding level to make it cleaner, or keep if preferred */
 }
 
-/* Responsive adjustments */
-
+/* ============ Breakpoints ============ */
 @media screen and (max-width: 992px) {
-  .skills-group {
+  .skills-container {
     grid-template-columns: 1fr;
+  }
+
+  .skills-content {
+    padding: 1.5rem;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .skills-content {
-    padding: 1.25rem;
-  }
-
-  .skills-group {
-    grid-template-columns: 1fr;
-    row-gap: 1rem;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .skills-name {
-    font-size: var(--small-font-size);
+  .skills-data {
+    width: 100%;
+    justify-content: flex-start;
   }
 }

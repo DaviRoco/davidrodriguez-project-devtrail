@@ -16,7 +16,6 @@ type QualificationProps = {
 
 const Qualification = ({ experience, education, certifications }: QualificationProps) => {
   const [toggleState, setToggleState] = useState(1);
-
   const [toggleModal, setToggleModal] = useState('0');
 
   const toggleModalRecords = (index: string) => {
@@ -80,7 +79,7 @@ const Qualification = ({ experience, education, certifications }: QualificationP
             {experience.map((record, index) =>
               index % 2 === 0 ? (
                 <div key={index} className="qualification-data">
-                  <div>
+                  <div className="qual-col-content">
                     <h3 className="qualification-title">{record._title}</h3>
                     <span className="qualification-subtitle">
                       {record._companyName}
@@ -96,21 +95,23 @@ const Qualification = ({ experience, education, certifications }: QualificationP
                     </div>
                   </div>
 
-                  <div>
+                  <div className="qual-col-line">
                     <span className="qualification-rounder"></span>
                     <span className="qualification-line"></span>
                   </div>
+
+                  <div className="qual-col-empty"></div>
                 </div>
               ) : (
                 <div key={index} className="qualification-data">
-                  <div></div>
+                  <div className="qual-col-empty"></div>
 
-                  <div>
+                  <div className="qual-col-line">
                     <span className="qualification-rounder"></span>
                     <span className="qualification-line"></span>
                   </div>
 
-                  <div>
+                  <div className="qual-col-content">
                     <h3 className="qualification-title">{record._title}</h3>
                     <span className="qualification-subtitle">
                       {record._companyName}
@@ -140,14 +141,14 @@ const Qualification = ({ experience, education, certifications }: QualificationP
             {education.map((record, index) =>
               index % 2 === 0 ? (
                 <div key={index} className="qualification-data">
-                  <div></div>
+                  <div className="qual-col-empty"></div>
 
-                  <div>
+                  <div className="qual-col-line">
                     <span className="qualification-rounder"></span>
                     <span className="qualification-line"></span>
                   </div>
 
-                  <div>
+                  <div className="qual-col-content">
                     <h3 className="qualification-title">{record._degree}</h3>
                     <span className="qualification-subtitle">
                       {record._institutionName}
@@ -165,7 +166,7 @@ const Qualification = ({ experience, education, certifications }: QualificationP
                 </div>
               ) : (
                 <div key={index} className="qualification-data">
-                  <div>
+                  <div className="qual-col-content">
                     <h3 className="qualification-title">{record._degree}</h3>
                     <span className="qualification-subtitle">
                       {record._institutionName}
@@ -181,10 +182,12 @@ const Qualification = ({ experience, education, certifications }: QualificationP
                     </div>
                   </div>
 
-                  <div>
+                  <div className="qual-col-line">
                     <span className="qualification-rounder"></span>
                     <span className="qualification-line"></span>
                   </div>
+
+                  <div className="qual-col-empty"></div>
                 </div>
               ),
             )}
@@ -200,7 +203,7 @@ const Qualification = ({ experience, education, certifications }: QualificationP
             {certifications.map((certification, index) =>
               index % 2 === 0 ? (
                 <div key={index} className="qualification-data">
-                  <div>
+                  <div className="qual-col-content">
                     <h3 className="qualification-title">
                       {certification._name}
                     </h3>
@@ -218,21 +221,23 @@ const Qualification = ({ experience, education, certifications }: QualificationP
                     </div>
                   </div>
 
-                  <div>
+                  <div className="qual-col-line">
                     <span className="qualification-rounder"></span>
                     <span className="qualification-line"></span>
                   </div>
+
+                  <div className="qual-col-empty"></div>
                 </div>
               ) : (
                 <div key={index} className="qualification-data">
-                  <div></div>
+                  <div className="qual-col-empty"></div>
 
-                  <div>
+                  <div className="qual-col-line">
                     <span className="qualification-rounder"></span>
                     <span className="qualification-line"></span>
                   </div>
 
-                  <div>
+                  <div className="qual-col-content">
                     <h3 className="qualification-title">
                       {certification._name}
                     </h3>
@@ -263,8 +268,9 @@ const Qualification = ({ experience, education, certifications }: QualificationP
               ? 'qualification-modal active-modal'
               : 'qualification-modal'
           }
+          onClick={() => toggleModalRecords('0')}
         >
-          <div className="qualification-modal-content">
+          <div className="qualification-modal-content glass" onClick={(e) => e.stopPropagation()}>
             <i
               onClick={() => toggleModalRecords('0')}
               className="uil uil-times qualification-modal-close"
@@ -333,8 +339,9 @@ const Qualification = ({ experience, education, certifications }: QualificationP
               ? 'qualification-modal active-modal'
               : 'qualification-modal'
           }
+          onClick={() => toggleModalRecords('0')}
         >
-          <div className="qualification-modal-content">
+          <div className="qualification-modal-content glass" onClick={(e) => e.stopPropagation()}>
             <i
               onClick={() => toggleModalRecords('0')}
               className="uil uil-times qualification-modal-close"
@@ -399,8 +406,9 @@ const Qualification = ({ experience, education, certifications }: QualificationP
               ? 'qualification-modal active-modal'
               : 'qualification-modal'
           }
+          onClick={() => toggleModalRecords('0')}
         >
-          <div className="qualification-modal-content">
+          <div className="qualification-modal-content glass" onClick={(e) => e.stopPropagation()}>
             <i
               onClick={() => toggleModalRecords('0')}
               className="uil uil-times qualification-modal-close"
