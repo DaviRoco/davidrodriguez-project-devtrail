@@ -66,10 +66,8 @@
     justify-content: flex-start;
   }
 
-  /* Glassmorphism for Mobile Menu */
   .nav-menu {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
+    background: var(--body-color);
     border-left: 1px solid var(--glass-border);
   }
 }
@@ -153,6 +151,7 @@
 
   .nav-list {
     display: flex;
+    flex-direction: row;
     column-gap: 2rem;
   }
 
