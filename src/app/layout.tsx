@@ -13,8 +13,16 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL('https://davidrodriguez-devtrail.com'),
   title: 'David Rodríguez | Full Stack Developer',
-  description: 'Portfolio of David Rodríguez, a Full Stack Developer specializing in Full-stack development, AI integration, and Cloud Architecture.',
-  keywords: ['David Rodríguez', 'Full Stack Developer', 'React', 'Next.js', 'Portfolio', 'Web Developer'],
+  description:
+    'Portfolio of David Rodríguez, a Full Stack Developer specializing in Full-stack development, AI integration, and Cloud Architecture.',
+  keywords: [
+    'David Rodríguez',
+    'Full Stack Developer',
+    'React',
+    'Next.js',
+    'Portfolio',
+    'Web Developer',
+  ],
   authors: [{ name: 'David Rodríguez' }],
   openGraph: {
     title: 'David Rodríguez - Portfolio',
@@ -49,7 +57,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <head>

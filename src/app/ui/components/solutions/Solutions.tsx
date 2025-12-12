@@ -58,13 +58,14 @@ const Solutions = () => {
       {/* Modals moved outside of the grid/content divs to avoid transform stacking context issues */}
       <div
         className={
-          toggleState === 1
-            ? 'services-modal active-modal'
-            : 'services-modal'
+          toggleState === 1 ? 'services-modal active-modal' : 'services-modal'
         }
         onClick={() => toggleTab(0)}
       >
-        <div className="services-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="services-modal-content"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="services-modal-header">
             <h3 className="services-modal-title">Software Development</h3>
             <i
@@ -76,9 +77,8 @@ const Solutions = () => {
           <div className="services-modal-body">
             <p className="services-modal-description">
               Skilled in full-stack development across a range of modern
-              technologies. Delivered reliable, and scalable
-              applications for both internal tools and customer-facing
-              platforms.
+              technologies. Delivered reliable, and scalable applications for
+              both internal tools and customer-facing platforms.
             </p>
 
             <ul className="services-modal-services grid">
@@ -92,8 +92,8 @@ const Solutions = () => {
               <li className="services-modal-service">
                 <i className="uil uil-check-circle services-modal-icon"></i>
                 <p className="services-modal-info">
-                  Built interactive frontends using React, Angular, and
-                  Next.js to enhance user experience.
+                  Built interactive frontends using React, Angular, and Next.js
+                  to enhance user experience.
                 </p>
               </li>
               <li className="services-modal-service">
@@ -116,13 +116,14 @@ const Solutions = () => {
 
       <div
         className={
-          toggleState === 2
-            ? 'services-modal active-modal'
-            : 'services-modal'
+          toggleState === 2 ? 'services-modal active-modal' : 'services-modal'
         }
         onClick={() => toggleTab(0)}
       >
-        <div className="services-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="services-modal-content"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="services-modal-header">
             <h3 className="services-modal-title">AI Integration</h3>
             <i
@@ -155,8 +156,8 @@ const Solutions = () => {
               <li className="services-modal-service">
                 <i className="uil uil-check-circle services-modal-icon"></i>
                 <p className="services-modal-info">
-                  Engineered token chunking mechanisms to handle large
-                  payloads for AI workloads.
+                  Engineered token chunking mechanisms to handle large payloads
+                  for AI workloads.
                 </p>
               </li>
               <li className="services-modal-service">
@@ -173,13 +174,14 @@ const Solutions = () => {
 
       <div
         className={
-          toggleState === 3
-            ? 'services-modal active-modal'
-            : 'services-modal'
+          toggleState === 3 ? 'services-modal active-modal' : 'services-modal'
         }
         onClick={() => toggleTab(0)}
       >
-        <div className="services-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="services-modal-content"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="services-modal-header">
             <h3 className="services-modal-title">
               Cloud Architecture & Deployment
@@ -206,8 +208,7 @@ const Solutions = () => {
               <li className="services-modal-service">
                 <i className="uil uil-check-circle services-modal-icon"></i>
                 <p className="services-modal-info">
-                  Deployed projects using Docker, Firebase, and CI/CD
-                  workflows.
+                  Deployed projects using Docker, Firebase, and CI/CD workflows.
                 </p>
               </li>
               <li className="services-modal-service">

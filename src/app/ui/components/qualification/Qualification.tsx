@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {
   Certifications,
   EducationalRecords,
-  type ExperienceRecords
+  type ExperienceRecords,
 } from '../../types/types';
 import './qualification.css';
 
@@ -14,7 +14,11 @@ type QualificationProps = {
   certifications: Certifications[];
 };
 
-const Qualification = ({ experience, education, certifications }: QualificationProps) => {
+const Qualification = ({
+  experience,
+  education,
+  certifications,
+}: QualificationProps) => {
   const [toggleState, setToggleState] = useState(1);
   const [toggleModal, setToggleModal] = useState('0');
 
@@ -270,7 +274,10 @@ const Qualification = ({ experience, education, certifications }: QualificationP
           }
           onClick={() => toggleModalRecords('0')}
         >
-          <div className="qualification-modal-content glass" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="qualification-modal-content glass"
+            onClick={(e) => e.stopPropagation()}
+          >
             <i
               onClick={() => toggleModalRecords('0')}
               className="uil uil-times qualification-modal-close"
@@ -341,7 +348,10 @@ const Qualification = ({ experience, education, certifications }: QualificationP
           }
           onClick={() => toggleModalRecords('0')}
         >
-          <div className="qualification-modal-content glass" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="qualification-modal-content glass"
+            onClick={(e) => e.stopPropagation()}
+          >
             <i
               onClick={() => toggleModalRecords('0')}
               className="uil uil-times qualification-modal-close"
@@ -408,7 +418,10 @@ const Qualification = ({ experience, education, certifications }: QualificationP
           }
           onClick={() => toggleModalRecords('0')}
         >
-          <div className="qualification-modal-content glass" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="qualification-modal-content glass"
+            onClick={(e) => e.stopPropagation()}
+          >
             <i
               onClick={() => toggleModalRecords('0')}
               className="uil uil-times qualification-modal-close"

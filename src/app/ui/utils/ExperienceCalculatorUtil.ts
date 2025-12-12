@@ -1,6 +1,8 @@
-import { ExperienceRecords } from "../types/types";
+import { ExperienceRecords } from '../types/types';
 
-export const calculateTotalExperience = (records: ExperienceRecords[]): string => {
+export const calculateTotalExperience = (
+  records: ExperienceRecords[],
+): string => {
   let totalYears = 0;
   let totalMonths = 0;
 

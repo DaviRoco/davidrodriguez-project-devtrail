@@ -6,7 +6,7 @@
   left: 0;
   z-index: var(--z-fixed);
   background-color: transparent;
-  transition: .4s;
+  transition: 0.4s;
   /* Smooth transition for background change */
 }
 
@@ -23,7 +23,7 @@
 .nav-toggle {
   color: var(--title-color);
   font-weight: var(--font-medium);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .nav-logo {
@@ -60,16 +60,14 @@
     padding: 2rem 1.5rem 4rem;
     box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
     border-radius: 1.5rem 1.5rem 0 0;
-    transition: .4s;
+    transition: 0.4s;
     z-index: var(--z-fixed);
   }
 
   /* Glassmorphism for Mobile Menu */
   .nav-menu {
     background: var(--container-color);
-    /* Ideally glass, but on mobile solid background is often safer for readability, 
-       can use var(--glass-bg) if we want full glass */
-    background: rgba(30, 41, 59, 0.95);
+    background: var(--body-color);
     backdrop-filter: blur(10px);
     border-top: 1px solid var(--glass-border);
   }
@@ -87,7 +85,7 @@
   font-size: var(--small-font-size);
   color: var(--title-color);
   font-weight: var(--font-medium);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .nav-link:hover {
@@ -103,11 +101,11 @@
 .nav-close {
   position: absolute;
   right: 1.3rem;
-  bottom: .5rem;
+  bottom: 0.5rem;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--title-color);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .nav-close:hover {

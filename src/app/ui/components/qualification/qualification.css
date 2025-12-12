@@ -140,12 +140,8 @@
 }
 
 /* Header */
-/* Note: Qualification.tsx has <div className="qualification-modal-content"> <i close> <title> <content> */
-/* We need to use CSS to order them or trust they are siblings. In Qualification.tsx, they are: Close, Title, Services. */
-/* We can use flex order or make the close button absolute but sticky INSIDE the flex container's top area. */
-/* OR we can create a psuedo-header via flex layout. */
 
-.qualification-modal-content>.qualification-modal-close {
+.qualification-modal-content > .qualification-modal-close {
   align-self: flex-end;
   /* Places it to the right */
   position: relative;
@@ -154,10 +150,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* Since the Title is next, we want it centered? */
-/* Actually, Qualification.tsx structure is flat inside modal-content. */
-/* Let's style the content as column. */
-
 .qualification-modal-title {
   text-align: center;
   font-size: var(--h3-font-size);
@@ -165,24 +157,6 @@
   margin-bottom: var(--mb-1);
   flex-shrink: 0;
 }
-
-/* Wrapper for scrollable stuff? Qualification.tsx does NOT have a wrapper div for the body content.
-   It has: Close(i), Title(h3), Services(div), BR, Services(ul).
-   We can make the modal-content scrollable, OR better, since we can't easily change TSX structure right now without another write,
-   we can stick to the sticky close button approach BUT fix the overflow issue.
-   
-   If we use display: flex; flex-direction: column; 
-   and overflow-y: auto on modal-content:
-   the close button scrolls out.
-   
-   If we want "Escape cannot fail", the close button must be OUTSIDE the scroll view.
-   We can change Qualification.tsx or use position: absolute on the close button and padding-top on the modal content, 
-   BUT the modal content must scroll.
-   If modal-content scrolls, absolute children scroll with it.
-   
-   Hack: Move the close button to be `position: fixed` or `sticky`. 
-   Sticky works if it is the first child.
-*/
 
 .qualification-modal-close {
   position: sticky;
@@ -241,28 +215,6 @@
   .qualification-container {
     margin-left: var(--mb-1-5);
     margin-right: var(--mb-1-5);
-  }
-
-  .qualification-data {
-    grid-template-columns: max-content 1fr;
-    gap: 1.5rem;
-  }
-
-  /* Force vertical alignment */
-  .qual-col-empty {
-    display: none;
-  }
-
-  .qual-col-content {
-    order: 2;
-    padding-bottom: 2rem;
-  }
-
-  .qual-col-line {
-    order: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .qualification-modal-content {

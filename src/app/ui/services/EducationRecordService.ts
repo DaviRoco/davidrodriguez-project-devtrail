@@ -19,11 +19,11 @@ export class EducationRecordService {
       );
       cachedEducationalRecords = response.data;
       return response.data.sort(
-        (a, b) => new Date(b._startDate).getTime() - new Date(a._startDate).getTime()
+        (a, b) =>
+          new Date(b._startDate).getTime() - new Date(a._startDate).getTime(),
       );
     } catch (error) {
       throw error;
     }
   }
-
 }

@@ -27,7 +27,7 @@
   border-radius: 1rem;
   text-align: center;
   box-shadow: var(--glass-shadow);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .contact-card:hover {
@@ -101,7 +101,7 @@
   border-radius: 0.75rem;
   padding: 1.5rem;
   z-index: 1;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .contact-form-input:focus {

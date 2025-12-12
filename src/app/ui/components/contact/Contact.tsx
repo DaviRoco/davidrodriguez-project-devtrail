@@ -4,14 +4,18 @@ import './contact.css';
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<
+    'idle' | 'sending' | 'success' | 'error'
+  >('idle');
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.current) return;
 
     // Client-side honeypot check (in addition to FormSubmit's server-side one)
-    const honeypot = form.current.querySelector('input[name="_honey"]') as HTMLInputElement;
+    const honeypot = form.current.querySelector(
+      'input[name="_honey"]',
+    ) as HTMLInputElement;
     if (honeypot && honeypot.value) return;
 
     setStatus('sending');
@@ -20,14 +24,17 @@ const Contact = () => {
 
     try {
       // Using AJAX to keep the user on the page
-      const response = await fetch("https://formsubmit.co/ajax/fc8317b6fdfac495097b9236829cc04c", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+      const response = await fetch(
+        'https://formsubmit.co/ajax/fc8317b6fdfac495097b9236829cc04c',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(formData)),
         },
-        body: JSON.stringify(Object.fromEntries(formData))
-      });
+      );
 
       if (response.ok) {
         setStatus('success');
@@ -39,7 +46,7 @@ const Contact = () => {
         setTimeout(() => setStatus('idle'), 5000);
       }
     } catch (error) {
-      console.error("Email error:", error);
+      console.error('Email error:', error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
@@ -77,7 +84,11 @@ const Contact = () => {
 
           <form ref={form} onSubmit={sendEmail} className="contact-form">
             {/* FormSubmit.co Configuration */}
-            <input type="hidden" name="_subject" value="New Portfolio Contact Reference" />
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Portfolio Contact Reference"
+            />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="text" name="_honey" style={{ display: 'none' }} />
@@ -136,14 +147,14 @@ const Contact = () => {
               >
                 <path
                   d="M7.39969 6.32015L15.8897 3.49015C19.6997 2.22015 21.7697 4.30015 20.5097 8.11015L17.6797 16.6002C15.7797 22.3102 12.6597 22.3102 10.7597 16.6002L9.91969 14.0802L7.39969 13.2402C1.68969 11.3402 1.68969 8.23015 7.39969 6.32015Z"
-                  stroke={status === 'success' ? "#4CAF50" : "#292D32"}
+                  stroke={status === 'success' ? '#4CAF50' : '#292D32'}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   opacity="0.34"
                   d="M10.1094 13.6501L13.6894 10.0601"
-                  stroke={status === 'success' ? "#4CAF50" : "#292D32"}
+                  stroke={status === 'success' ? '#4CAF50' : '#292D32'}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />

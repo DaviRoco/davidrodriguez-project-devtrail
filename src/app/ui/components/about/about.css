@@ -10,7 +10,7 @@
   justify-self: center;
   box-shadow: var(--glass-shadow);
   transform: rotate(3deg);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .about-img:hover {
@@ -31,7 +31,7 @@
   border-radius: 1rem;
   text-align: center;
   padding: 1.5rem 1rem;
-  transition: .3s;
+  transition: 0.3s;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 

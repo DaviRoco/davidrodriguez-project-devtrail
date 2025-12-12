@@ -194,7 +194,7 @@ describe('Skills Repository', () => {
         { id: 'cat1', data: () => ({ name: '' }) }, // Invalid (no name)
         { id: 'cat2', data: () => ({ name: 'ValidCategory' }) }, // Valid
       ];
-    
+
       const mockSkills = [
         {
           id: 'skill1',
@@ -205,26 +205,25 @@ describe('Skills Repository', () => {
           }),
         },
       ];
-    
+
       // 1st getDocs: fetch categories
       (getDocs as jest.Mock).mockResolvedValueOnce({
         empty: false,
         docs: mockCategories,
       });
-    
+
       // 2nd getDocs: only for the valid category
       (getDocs as jest.Mock).mockResolvedValueOnce({
         docs: mockSkills,
       });
-    
+
       const groupedSkills = await repository.getSkillsGroupedByCategoryName();
-    
+
       // The invalid category (empty name) should be skipped
       expect(groupedSkills).toHaveProperty('ValidCategory');
       expect(groupedSkills).not.toHaveProperty('');
       expect(Object.keys(groupedSkills).length).toBe(1);
     });
-    
 
     test('It should handle empty skills for a category gracefully.', async () => {
       const mockCategories = [{ id: 'cat1', data: () => ({ name: 'DevOps' }) }];

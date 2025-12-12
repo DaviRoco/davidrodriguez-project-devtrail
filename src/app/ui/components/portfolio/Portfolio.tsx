@@ -70,7 +70,10 @@ const Portfolio = ({ projects }: ProjectProps) => {
           }
           onClick={() => toggleTab('0')}
         >
-          <div className="portfolio-modal-content" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="portfolio-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             <i
               onClick={() => toggleTab('0')}
               className="uil uil-times portfolio-modal-close"

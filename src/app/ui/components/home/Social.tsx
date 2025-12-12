@@ -29,7 +29,6 @@ const Social = () => {
       >
         <i className="uil uil-twitter-alt"></i>
       </a>
-
     </div>
   );
 };

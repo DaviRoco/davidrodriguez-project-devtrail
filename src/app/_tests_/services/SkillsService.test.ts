@@ -91,29 +91,35 @@ describe('Skills Service', () => {
           'React',
           'Library',
           KnowledgeLevelEnumerations.Mid,
-          '1'
-        )
+          '1',
+        ),
       ],
     };
 
     test('It should return grouped skills when repository returns data', async () => {
-      (skillsRepository.getSkillsGroupedByCategoryName as jest.Mock).mockResolvedValue(
-        mockSkillsGrouped,
-      );
-  
+      (
+        skillsRepository.getSkillsGroupedByCategoryName as jest.Mock
+      ).mockResolvedValue(mockSkillsGrouped);
+
       const result = await skillsService.getSkillsGroupedByCategoryName();
-  
+
       expect(result).toEqual(mockSkillsGrouped);
-      expect(skillsRepository.getSkillsGroupedByCategoryName).toHaveBeenCalledTimes(1);
+      expect(
+        skillsRepository.getSkillsGroupedByCategoryName,
+      ).toHaveBeenCalledTimes(1);
     });
-  
+
     test('It should return null when repository returns null', async () => {
-      (skillsRepository.getSkillsGroupedByCategoryName as jest.Mock).mockResolvedValue(null);
-  
+      (
+        skillsRepository.getSkillsGroupedByCategoryName as jest.Mock
+      ).mockResolvedValue(null);
+
       const result = await skillsService.getSkillsGroupedByCategoryName();
-  
+
       expect(result).toBeNull();
-      expect(skillsRepository.getSkillsGroupedByCategoryName).toHaveBeenCalledTimes(1);
+      expect(
+        skillsRepository.getSkillsGroupedByCategoryName,
+      ).toHaveBeenCalledTimes(1);
     });
   });
 

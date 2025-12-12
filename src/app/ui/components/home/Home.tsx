@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React from 'react';
-import ProfileImg from '../../assets/profile.jpeg'; // Import the image 
+import ProfileImg from '../../assets/profile.jpeg'; // Import the image
 import Data from './Data';
 import ScrollDown from './ScrollDown';
 import Social from './Social';

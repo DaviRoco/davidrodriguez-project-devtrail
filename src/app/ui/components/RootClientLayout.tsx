@@ -1,13 +1,13 @@
 'use client';
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
-import { useCertifications } from "../hooks/UseCertifications";
-import { useEducationRecords } from "../hooks/UseEducationRecords";
-import { useExperienceRecords } from "../hooks/UseExperienceRecords";
-import { useProjectCounts } from "../hooks/UseProjectCount";
-import { useProjects } from "../hooks/UseProjects";
-import Loader from "./loader/Loader";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+import { useCertifications } from '../hooks/UseCertifications';
+import { useEducationRecords } from '../hooks/UseEducationRecords';
+import { useExperienceRecords } from '../hooks/UseExperienceRecords';
+import { useProjectCounts } from '../hooks/UseProjectCount';
+import { useProjects } from '../hooks/UseProjects';
+import Loader from './loader/Loader';
 
 export default function RootClientLayout({
   children,

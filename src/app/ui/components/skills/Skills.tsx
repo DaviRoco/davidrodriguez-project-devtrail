@@ -32,7 +32,9 @@ const Skills = ({ skillsByCategory }: SkillsProps) => {
 
       <div className="skills-container container">
         {orderedCategories.map((category) => {
-          const skills = (skillsByCategory as { [category: string]: Skills[] })[category];
+          const skills = (skillsByCategory as { [category: string]: Skills[] })[
+            category
+          ];
           if (!skills) return null;
 
           return (
@@ -44,7 +46,9 @@ const Skills = ({ skillsByCategory }: SkillsProps) => {
               <div className="skills-box">
                 <div className="skills-group">
                   {skills
-                    .sort((a: { _name: string; }, b: { _name: string; }) => a._name.localeCompare(b._name))
+                    .sort((a: { _name: string }, b: { _name: string }) =>
+                      a._name.localeCompare(b._name),
+                    )
                     .map((skill: Skills) => (
                       <div className="skills-data" key={skill._id}>
                         <i

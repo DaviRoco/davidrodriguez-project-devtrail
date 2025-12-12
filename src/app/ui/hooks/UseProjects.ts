@@ -4,8 +4,8 @@ import { Projects } from '../types/types';
 
 export const useProjects = () => {
   return useQuery<Projects[]>({
-      queryKey: ['projects'],
-      queryFn: () => ProjectService.getAllProjects() as Promise<Projects[]>,
-      staleTime: 1000 * 60 * 60,
-    });
+    queryKey: ['projects'],
+    queryFn: () => ProjectService.getAllProjects() as Promise<Projects[]>,
+    staleTime: 1000 * 60 * 60,
+  });
 };

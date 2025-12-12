@@ -17,7 +17,7 @@
   justify-content: space-between;
   padding: 2rem 1.5rem;
   border-radius: 1.5rem;
-  transition: .3s;
+  transition: 0.3s;
   box-shadow: var(--glass-shadow);
 }
 

@@ -23,7 +23,7 @@
 
 .footer-link {
   font-weight: var(--font-medium);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .footer-link:hover {
@@ -51,7 +51,7 @@
   border-radius: 0.5rem;
   display: inline-flex;
   border: 1px solid var(--glass-border);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .footer-social-link:hover {

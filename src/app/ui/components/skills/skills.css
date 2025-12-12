@@ -10,7 +10,7 @@
   border: 1px solid var(--glass-border);
   padding: 2rem;
   border-radius: 1.5rem;
-  transition: .3s;
+  transition: 0.3s;
   box-shadow: var(--glass-shadow);
   height: 100%;
   /* Equal height */
@@ -56,7 +56,7 @@
   padding: 0.75rem 1.25rem;
   border-radius: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .skills-data:hover {
@@ -80,7 +80,6 @@
   font-size: var(--tiny-font-size);
   color: var(--text-color-light);
   display: none;
-  /* Hiding level to make it cleaner, or keep if preferred */
 }
 
 /* ============ Breakpoints ============ */
